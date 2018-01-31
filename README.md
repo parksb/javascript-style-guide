@@ -270,7 +270,7 @@
 
     > Why? It’s easier to tell which properties are using the shorthand.
 
-    > 왜? 어떤 속성이 단축구문을 사용하고 있는 지 알기 쉽게 해주기 때문입니다.
+    > 왜? 어떤 속성이 단축구문을 사용하고 있는지 알기 쉽게 해주기 때문입니다.
 
     ```javascript
     const anakinSkywalker = 'Anakin Skywalker';
@@ -304,7 +304,7 @@
 
     > Why? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
 
-    > 왜? 일반적으로 우리는 이렇게 하는 것이 더 읽기 쉽다고 생각합니다. 이렇게 하면 구문 강조를 개선하고, 많은 자바스크립트 엔진으로 하여금 더 쉽게 최적화 되도록 할 수 있습니다.
+    > 왜? 일반적으로 이렇게 하는 것이 더 읽기 쉽다고 생각합니다. 이렇게 하면 구문 강조를 개선하고, 많은 자바스크립트 엔진으로 하여금 더 쉽게 최적화 하도록 할 수 있습니다.
 
     ```javascript
     // bad
@@ -450,7 +450,7 @@
   <a name="arrays--callback-return"></a><a name="4.5"></a>
   - [4.6](#arrays--callback-return) Use return statements in array method callbacks. It’s ok to omit the return if the function body consists of a single statement returning an expression without side effects, following [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.6](#arrays--callback-return) 배열 메소드 콜백에는 리턴 구문을 사용하세요. 만약 함수가 부작용 없는 단일 표현식을 반환하는 구문으로 구성되어 있다면 리턴 구문을 생략해도 됩니다.
+  - [4.6](#arrays--callback-return) 배열 메소드 콜백에는 리턴 구문을 사용하세요. 만약 함수가 [8.2](#arrows--implicit-return)와 같이 부작용 없는 단일 표현식을 반환하는 구문으로 구성되어 있다면 리턴 구문을 생략해도 됩니다. eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
   
     ```javascript
     // good
@@ -641,7 +641,7 @@
   <a name="strings--line-length"></a><a name="6.2"></a>
   - [6.2](#strings--line-length) Strings that cause the line to go over 100 characters should not be written across multiple lines using string concatenation.
   <a name="strings--line-length"></a><a name="6.2"></a>
-  - [6.2](#strings--line-length) 100자가 넘는 문자열을 문자열 연결을 이용해 여러 행에 걸쳐 쓰지 마세요.
+  - [6.2](#strings--line-length) 100자가 넘는 문자열을 문자열 연결을 이용해 여러 줄에 걸쳐 쓰지 마세요.
   
     > Why? Broken strings are painful to work with and make code less searchable.
 
@@ -670,7 +670,7 @@
 
     > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
 
-    > 왜? 템플릿 문자열은 덧붙이기 기능과 적절한 줄바꿈 기능을 갖는 간결한 구문으로, 가독성을 높여주기 때문입니다.
+    > 왜? 템플릿 문자열은 덧붙이기 기능과 적절한 줄바꿈 기능을 제공하는 간결한 문법으로, 가독성을 높여주기 때문입니다.
 
     ```javascript
     // bad
@@ -705,6 +705,7 @@
   - [6.5](#strings--escaping) 문자열에 불필요한 이스케이프 문자를 사용하지 마세요. eslint: [`no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape)
 
     > Why? Backslashes harm readability, thus they should only be present when necessary.
+
     > 왜? 백슬래시는 가독성을 해치기 때문에 필요할 때만 사용되어야 합니다.
 
     ```javascript
@@ -727,7 +728,7 @@
 
     > Why? Function declarations are hoisted, which means that it’s easy - too easy - to reference the function before it is defined in the file. This harms readability and maintainability. If you find that a function’s definition is large or complex enough that it is interfering with understanding the rest of the file, then perhaps it’s time to extract it to its own module! Don’t forget to explicitly name the expression, regardless of whether or not the name is inferred from the containing variable (which is often the case in modern browsers or when using compilers such as Babel). This eliminates any assumptions made about the Error's call stack. ([Discussion](https://github.com/airbnb/javascript/issues/794))
 
-    > 왜? 함수선언은 호이스트됩니다. 즉, 파일에서 함수를 정의하기 전에 함수를 참조하는 것이 쉽다는 것-너무 쉽다는 것-을 의미합니다. 이것은 가독성과 유지관리성를 해칩니다. 만약 함수의 정의가 나머지 파일을 이해하는데 방해가 될 정도로 크거나 복잡하다는 것을 발견한다면, 이제 함수를 모듈 밖으로 추출해내야 할 때라는 의미입니다! 포함된 변수로부터 추론된 이름인지와 관계 없이(현대 브라우저 또는 Babel과 같은 컴파일러를 쓸 때 흔히 볼 수 있듯이) 표현의 이름을 명시적으로 짓는 것을 잊지 마세요. 이를 통해 Error 콜 스택에 대한 모든 추정을 제거할 수 있습니다. ([논의](https://github.com/airbnb/javascript/issues/794))
+    > 왜? 함수선언은 호이스트됩니다. 즉, 파일에서 함수를 정의하기 전에 함수를 참조하는 것이 쉽다는 것-너무 쉽다는 것-을 의미합니다. 이것은 가독성과 유지관리성를 해칩니다. 만약 함수의 정의가 나머지 파일을 이해하는데 방해가 될 정도로 크거나 복잡하다는 것을 발견한다면, 이제 함수를 모듈 밖으로 추출해내야 할 때라는 의미입니다! 포함된 변수로부터 추론된 이름인지와 관계 없이(현대 브라우저 또는 Babel과 같은 컴파일러를 쓸 때 흔히 볼 수 있듯이) 표현의 이름을 명시적으로 짓는 것을 잊지 마세요. 이를 통해 Error 콜 스택에 대한 모든 추정을 제거할 수 있습니다. ([토론](https://github.com/airbnb/javascript/issues/794))
 
     ```javascript
     // bad
@@ -753,6 +754,8 @@
   - [7.2](#functions--iife) 즉시 호출 함수 표현식을 괄호로 감싸세요. eslint: [`wrap-iife`](https://eslint.org/docs/rules/wrap-iife.html) jscs: [`requireParenthesesAroundIIFE`](http://jscs.info/rule/requireParenthesesAroundIIFE)
 
     > Why? An immediately invoked function expression is a single unit - wrapping both it, and its invocation parens, in parens, cleanly expresses this. Note that in a world with modules everywhere, you almost never need an IIFE.
+
+    > 왜? 즉시 호출 함수 표현식은 하나의 단위이며, 괄호로 이것을 감싸면 괄호 안의 표현을 명확하게 해주기 때문입니다. 모듈을 어디에서나 사용한다면 즉시 호출 표현식은 전혀 필요하지 않다는 점을 주의하세요.
 
     ```javascript
     // immediately-invoked function expression (IIFE)
@@ -919,6 +922,8 @@
 
     > Why? Consistency is good, and you shouldn’t have to add or remove a space when adding or removing a name.
 
+    > 왜? 일관성을 갖는 것은 좋으니까요. 그리고 이렇게 하면 이름을 추가하거나 지울 때 공백을 건드릴 필요가 없게 됩니다.
+
     ```javascript
     // bad
     const f = function(){};
@@ -958,7 +963,7 @@
 
     > Why? Reassigning parameters can lead to unexpected behavior, especially when accessing the `arguments` object. It can also cause optimization issues, especially in V8.
 
-    > Why? 매개변수를 재할당하는 것은 예측할 수 없는 결과를 불러 일으킵니다. 특히 `arguments` 객체에 접근할 때 말이죠. 또한 V8에서 최적화 문제를 일으킬 수도 있습니다.
+    > 왜? 매개변수를 재할당하는 것은 예측할 수 없는 결과를 불러 일으킵니다. 특히 `arguments` 객체에 접근할 때 말이죠. 또한 V8에서 최적화 문제를 일으킬 수도 있습니다.
 
     ```javascript
     // bad
@@ -1057,6 +1062,8 @@
 
     > 왜? 화살표 함수는 그 컨텍스트의 `this`에서 실행하는 버전의 함수를 만듭니다. 이것은 보통 원하는대로 작동하고, 보다 간결합니다.
 
+    > Why not? If you have a fairly complicated function, you might move that logic out into its own named function expression.
+
     > 사용해야만 하지 않아? 복잡한 함수에서 로직을 정의한 함수의 바깥으로 이동하고 싶을 때.
 
     ```javascript
@@ -1075,6 +1082,7 @@
 
   <a name="arrows--implicit-return"></a><a name="8.2"></a>
   - [8.2](#arrows--implicit-return) If the function body consists of a single statement returning an [expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) without side effects, omit the braces and use the implicit return. Otherwise, keep the braces and use a `return` statement. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style.html) jscs:  [`disallowParenthesesAroundArrowParam`](http://jscs.info/rule/disallowParenthesesAroundArrowParam), [`requireShorthandArrowFunctions`](http://jscs.info/rule/requireShorthandArrowFunctions)
+  <a name="arrows--implicit-return"></a><a name="8.2"></a>
   - [8.2](#arrows--implicit-return) 하나의 식으로 구성된 함수가 부작용이 없는 [표현식](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions)을 반환하는 경우, 중괄호를 생략하고 암시적 반환을 사용할 수 있습니다. 그 외에는 중괄호를 그대로 두고, `return`문도 사용하세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style.html) jscs:  [`disallowParenthesesAroundArrowParam`](http://jscs.info/rule/disallowParenthesesAroundArrowParam), [`requireShorthandArrowFunctions`](http://jscs.info/rule/requireShorthandArrowFunctions)
 
     > Why? Syntactic sugar. It reads well when multiple functions are chained together.
@@ -1155,7 +1163,7 @@
 
     > Why? Less visual clutter.
 
-    > Why? 별로 보기 어렵지 않기 때문입니다.
+    > 왜? 별로 보기 어렵지 않기 때문입니다.
 
     ```javascript
     // bad
@@ -1215,7 +1223,7 @@
 
     > Why? `class` syntax is more concise and easier to reason about.
 
-    > Why? `class` 구문은 간결하고 의미를 알기 쉽기 때문입니다.
+    > 왜? `class` 구문은 간결하고 의미를 알기 쉽기 때문입니다.
 
     ```javascript
     // bad
@@ -1244,7 +1252,7 @@
   <a name="constructors--extends"></a><a name="9.2"></a>
   - [9.2](#constructors--extends) Use `extends` for inheritance.
   <a name="constructors--extends"></a><a name="9.2"></a>
-  - [9.2](#constructors--extends) 상속할 때는 `extends`를 사용하세요.
+  - [9.2](#constructors--extends) 상속에는 `extends`를 사용하세요.
 
     > Why? It is a built-in way to inherit prototype functionality without breaking `instanceof`.
 
@@ -1438,7 +1446,7 @@
 
     > Why? Although the one-liner is concise, having one clear way to import and one clear way to export makes things consistent.
 
-    > 왜? 한줄은 간결하지만, 명확한 import와 명확한 export를 통해 일관성을 가질 수 있기 때문입니다.
+    > 왜? 한줄이 간결하기는 하지만, 명확한 import와 명확한 export를 통해 일관성을 가질 수 있기 때문입니다.
 
     ```javascript
     // bad
@@ -1459,7 +1467,7 @@
  eslint: [`no-duplicate-imports`](https://eslint.org/docs/rules/no-duplicate-imports)
     > Why? Having multiple lines that import from the same path can make code harder to maintain.
 
-    >왜? 같은 경로에서 import하는 여러 줄의 코드는 유지보수를 어렵게 만듭니다.
+    > 왜? 같은 경로에서 import하는 여러 줄의 코드는 유지보수를 어렵게 만듭니다.
 
     ```javascript
     // bad
@@ -1570,7 +1578,7 @@
 
     > Why? Since using Webpack syntax in the imports couples the code to a module bundler. Prefer using the loader syntax in `webpack.config.js`.
 
-    > Why? import에서 Webpack 구문을 사용하면 이 코드가 모듈 번들러에 연결되기 때문입니다. loader 구문은 `webpack.config.js`에서 사용하세요.
+    > 왜? import에서 Webpack 구문을 사용하면 이 코드가 모듈 번들러에 연결되기 때문입니다. loader 구문은 `webpack.config.js`에서 사용하세요.
 
     ```javascript
     // bad
@@ -1589,7 +1597,7 @@
   <a name="iterators--nope"></a><a name="11.1"></a>
   - [11.1](#iterators--nope) Don’t use iterators. Prefer JavaScript’s higher-order functions instead of loops like `for-in` or `for-of`. eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
   <a name="iterators--nope"></a><a name="11.1"></a>
-  - [11.1](#iterators--nope) 이터레이터를 사용하지 마세요. `for-of`루프 대신 `map()`과 `reduce()`와 같은 자바스크립트의 고급함수를 사용하세요. eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
+  - [11.1](#iterators--nope) 이터레이터를 사용하지 마세요. `for-in`이나 `for-of`같은 루프 대신 자바스크립트의 고급함수를 사용하세요. eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
 
     > Why? This enforces our immutable rule. Dealing with pure functions that return values is easier to reason about than side effects.
 
@@ -1843,7 +1851,7 @@
 
     > Why? `let` and `const` are block scoped and not function scoped.
 
-    > Why? `let`과 `const`는 블록스코프이기 때문이빈다. 함수스코프가 아닙니다.
+    > 왜? `let`과 `const`는 블록스코프이기 때문이빈다. 함수스코프가 아닙니다.
 
     ```javascript
     // bad - unnecessary function call
@@ -1922,7 +1930,7 @@
 
     > Why? Per the eslint documentation, unary increment and decrement statements are subject to automatic semicolon insertion and can cause silent errors with incrementing or decrementing values within an application. It is also more expressive to mutate your values with statements like `num += 1` instead of `num++` or `num ++`. Disallowing unary increment and decrement statements also prevents you from pre-incrementing/pre-decrementing values unintentionally which can also cause unexpected behavior in your programs.
 
-    > eslint 문서에 따르면, 단항 증감 구문은 자동으로 세미콜론을 삽입하며, 어플리케이션에서 값을 증감할 때 오류를 일으킬 수 있습니다. 또한 `num += 1`과 같은 구문을 통해 값을 변경하는 것이 `num++`이나 `num ++`와 같은 구문을 사용하는 것보다 더 의미있는 일이라고 생각합니다. 단항 증감 구문을 사용하지 않는 것은 프로그램에서 예기치 않은 동작을 일으키는 전위 증감 연산을 막을 수 있습니다.
+    > 왜? eslint 문서에 따르면, 단항 증감 구문은 자동으로 세미콜론을 삽입하며, 어플리케이션에서 값을 증감할 때 오류를 일으킬 수 있습니다. 또한 `num += 1`과 같은 구문을 통해 값을 변경하는 것이 `num++`이나 `num ++`와 같은 구문을 사용하는 것보다 더 의미있는 일이라고 생각합니다. 단항 증감 구문을 사용하지 않으면 프로그램에서 예기치 않은 동작을 일으키는 전위 증감 연산을 막을 수 있습니다.
 
     ```javascript
     // bad
@@ -2430,11 +2438,11 @@
   <a name="control-statements"></a>
   - [17.1](#control-statements) In case your control statement (`if`, `while` etc.) gets too long or exceeds the maximum line length, each (grouped) condition could be put into a new line. The logical operator should begin the line.
   <a name="control-statements"></a>
-  - [17.1](#control-statements) 제어문 (`if`, `while` 등)이 너무 길거나 최대 길이를 넘긴 경우, 각 조건을 새로운 행에 둘 수 있습니다. 논리 연산자는 행의 시작부분에 있어야 합니다.
+  - [17.1](#control-statements) 제어문 (`if`, `while` 등)이 너무 길거나 최대 길이를 넘긴 경우, 각 조건을 새로운 줄에 두세요. 논리 연산자는 줄의 시작부분에 있어야 합니다.
 
     > Why? Requiring operators at the beginning of the line keeps the operators aligned and follows a pattern similar to method chaining. This also improves readability by making it easier to visually follow complex logic.
 
-    > 왜? 행의 맨 처음에 연산자를 두면 연산자를 정렬을 유지하고, 메소드 체이닝과 비슷한 패턴을 따를 수 있습니다. 또, 이렇게 하면 복잡한 로직을 쉽게 볼 수 있도록 만들어 가독성을 높입니다.
+    > 왜? 줄의 맨 처음에 연산자를 두면 연산자의 정렬을 유지하고, 메소드 체이닝과 비슷한 패턴을 따를 수 있습니다. 또, 이렇게 하면 복잡한 로직을 쉽게 볼 수 있도록 만들어 가독성을 높입니다.
 
     ```javascript
     // bad
@@ -2972,7 +2980,7 @@
 
     > Why? This ensures readability and maintainability.
 
-    > 왜? 가독성과 유지보수성을 보장해줍니다.
+    > 왜? 가독성과 유지보수성을 보장해주기 때문입니다.
 
     ```javascript
     // bad
