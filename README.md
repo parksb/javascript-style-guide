@@ -12,6 +12,10 @@
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+This guide is available in other languages too. See [Translation](#translation)
+
+이 스타일 가이드는 다른 언어로도 제공됩니다. [Translation](#translation)을 보세요.
+
 다른 스타일 가이드
 
   - [ES5 (구버전)](es5-deprecated/)
@@ -3387,6 +3391,11 @@
 
     // good
     this.firstName = 'Panda';
+
+    // good, in environments where WeakMaps are available
+    // see https://kangax.github.io/compat-table/es6/#test-WeakMap
+    const firstNames = new WeakMap();
+    firstNames.set(this, 'Panda');
     ```
 
   <a name="naming--self-this"></a><a name="22.5"></a>
@@ -4042,7 +4051,7 @@
 
   This style guide is also available in other languages:
 
-  다른 언어로 이 스타일 가이드를 살펴볼 수 있습니다:
+  이 스타일 가이드는 다른 언어로도 제공됩니다:
 
   - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
   - ![bg](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bulgaria.png) **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
