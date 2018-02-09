@@ -2497,6 +2497,21 @@ This guide is available in other languages too. See [Translation](#translation)
     }
     ```
 
+  <a name="control-statement--value-selection"></a>
+  - [17.2](#control-statements--value-selection) Don't use selection operators in place of control statements.
+  <a name="control-statement--value-selection"></a>
+  - [17.2](#control-statements--value-selection). 선택 연산자를 제어 구문 대신 쓰지 마세요.
+
+    ```javascript
+    // bad
+    !isRunning && startRunning();
+
+    // good
+    if (!isRunning) {
+      startRunning();
+    }
+    ```
+
 **[⬆ back to top](#목차)**
 
 ## 주석 (Comments)
@@ -3173,7 +3188,7 @@ This guide is available in other languages too. See [Translation](#translation)
 
     // bad - raises exception
     const reaction = "No! That's impossible!"
-    (async function meanwhileOnTheFalcon(){
+    (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
     }())
@@ -3193,7 +3208,7 @@ This guide is available in other languages too. See [Translation](#translation)
 
     // good
     const reaction = "No! That's impossible!";
-    (async function meanwhileOnTheFalcon(){
+    (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
     }());
