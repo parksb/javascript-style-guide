@@ -2484,7 +2484,7 @@ This guide is available in other languages too. See [Translation](#translation)
 
     // good
     if (
-      (foo === 123 || bar === "abc")
+      (foo === 123 || bar === 'abc')
       && doesItLookGoodWhenItBecomesThatLong()
       && isThisReallyHappening()
     ) {
