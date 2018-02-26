@@ -1965,6 +1965,7 @@ This guide is available in other languages too. See [Translation](#translation)
     const truthyCount = array.filter(Boolean).length;
     ```
 
+  <a name="variables--linebreak"></a>
   - [13.7](#variables--linebreak) Avoid linebreaks before or after `=` in an assignment. If your assignment violates [`max-len`](https://eslint.org/docs/rules/max-len.html), surround the value in parens. eslint [`operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak.html).
   - [13.7](#variables--linebreak) 값을 할당할 때 `=`의 앞 또는 뒤에서 줄바꿈을 하지 마세요. 만약 할당이 [`max-len`](https://eslint.org/docs/rules/max-len.html)을 넘기는 경우, 값을 괄호로 둘러싸세요. eslint [`operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak.html).
 
