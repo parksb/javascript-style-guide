@@ -1018,10 +1018,10 @@ This guide is available in other languages too. See [Translation](#translation)
     ```
 
   <a name="functions--signature-invocation-indentation"></a>
-  - [7.15](#functions--signature-invocation-indentation) Functions with multiline signatures, or invocations, should be indented just like every other multiline list in this guide: with each item on a line by itself, with a trailing comma on the last item.
+  - [7.15](#functions--signature-invocation-indentation) Functions with multiline signatures, or invocations, should be indented just like every other multiline list in this guide: with each item on a line by itself, with a trailing comma on the last item. eslint: [`function-paren-newline`](https://eslint.org/docs/rules/function-paren-newline)
   <a name="functions--signature-invocation-indentation"></a>
   - [7.15](#functions--signature-invocation-indentation) 
-  여러 줄의 시그니처 또는 호출을 취하는 함수는 이 가이드에 있는 다른 것들처럼 들여쓰기가 되어야 합니다. 한줄에 각 항목을 하나씩 두고, 마지막 항목에 쉼표를 넣습니다. 
+  여러 줄의 시그니처 또는 호출을 취하는 함수는 이 가이드에 있는 다른 것들처럼 들여쓰기가 되어야 합니다. 한줄에 각 항목을 하나씩 두고, 마지막 항목에 쉼표를 넣습니다. eslint: [`function-paren-newline`](https://eslint.org/docs/rules/function-paren-newline)
   
     ```javascript
     // bad
@@ -3855,7 +3855,7 @@ This guide is available in other languages too. See [Translation](#translation)
     - Whichever testing framework you use, you should be writing tests!
     - Strive to write many small pure functions, and minimize where mutations occur.
     - Be cautious about stubs and mocks - they can make your tests more brittle.
-    - We primarily use [`mocha`](https://www.npmjs.com/package/mocha) at Airbnb. [`tape`](https://www.npmjs.com/package/tape) is also used occasionally for small, separate modules.
+    - We primarily use [`mocha`](https://www.npmjs.com/package/mocha) and [`jest`](https://www.npmjs.com/package/jest) at Airbnb. [`tape`](https://www.npmjs.com/package/tape) is also used occasionally for small, separate modules.
     - 100% test coverage is a good goal to strive for, even if it’s not always practical to reach it.
     - Whenever you fix a bug, _write a regression test_. A bug fixed without a regression test is almost certainly going to break again in the future.
 
@@ -3864,7 +3864,7 @@ This guide is available in other languages too. See [Translation](#translation)
     - 어떤 테스트 프레임워크를 사용하든 테스트를 작성하세요!
     - 작고 순수한 기능을 쓰도록 노력하고, 조작이 일어나는 곳을 최소화하세요.
     - stubs과 mocks에 주의하세요 - 테스트를 더 다루기 힘들게 만들 수 있습니다.
-    - Airbnb에서는 [`mocha`](https://www.npmjs.com/package/mocha)를 주로 사용합니다. [`tape`](https://www.npmjs.com/package/tape)도 때때로 작은 개별 모듈에 사용됩니다.
+    - Airbnb에서는 [`mocha`](https://www.npmjs.com/package/mocha)와 [`jest`](https://www.npmjs.com/package/jest)를 주로 사용합니다. [`tape`](https://www.npmjs.com/package/tape)도 때때로 작은 개별 모듈에 사용됩니다.
     - 100% 테스트 적용 범위에 도달하는 것이 항상 실용적이지는 않지만, 좋은 목표입니다.
     - 버그를 고칠 때마다 _회귀 테스트_ 를 작성하세요. 회귀 테스트 없이 고쳐진 버그는 미래에 거의 분명히 문제를 다시 일으킵니다. 
 
