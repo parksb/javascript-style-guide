@@ -1342,9 +1342,9 @@ This guide is available in other languages too. See [Translation](#translation)
     ```
 
   <a name="constructors--tostring"></a><a name="9.4"></a>
-  - [9.4](#constructors--tostring) It’s okay to write a custom toString() method, just make sure it works successfully and causes no side effects.
+  - [9.4](#constructors--tostring) It’s okay to write a custom `toString()` method, just make sure it works successfully and causes no side effects.
   <a name="constructors--tostring"></a><a name="9.4"></a>
-  - [9.4](#constructors--tostring) toString()을 사용해도 되지만, 올바르게 동작하는지와 부작용이 없는지 확인해 주세요.
+  - [9.4](#constructors--tostring) `toString()`을 사용해도 되지만, 올바르게 동작하는지와 부작용이 없는지 확인해 주세요.
 
     ```javascript
     class Jedi {
@@ -1949,9 +1949,9 @@ This guide is available in other languages too. See [Translation](#translation)
     ```
 
   <a name="variables--unary-increment-decrement"></a><a name="13.6"></a>
-  - [13.6](#variables--unary-increment-decrement) Avoid using unary increments and decrements (++, --). eslint [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus)
+  - [13.6](#variables--unary-increment-decrement) Avoid using unary increments and decrements (`++`, `--`). eslint [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus)
   <a name="variables--unary-increment-decrement"></a><a name="13.6"></a>
-  - [13.6](#variables--unary-increment-decrement) 단항 증감 연산자(++, --)를 사용하지 마세요. eslint [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus)
+  - [13.6](#variables--unary-increment-decrement) 단항 증감 연산자(`++`, `--`)를 사용하지 마세요. eslint [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus)
 
     > Why? Per the eslint documentation, unary increment and decrement statements are subject to automatic semicolon insertion and can cause silent errors with incrementing or decrementing values within an application. It is also more expressive to mutate your values with statements like `num += 1` instead of `num++` or `num ++`. Disallowing unary increment and decrement statements also prevents you from pre-incrementing/pre-decrementing values unintentionally which can also cause unexpected behavior in your programs.
 
@@ -3733,9 +3733,9 @@ This guide is available in other languages too. See [Translation](#translation)
   - [24.1](#accessors--not-required) 속성을 위한 접근자 함수는 필수가 아닙니다.
 
   <a name="accessors--no-getters-setters"></a><a name="23.2"></a>
-  - [24.2](#accessors--no-getters-setters) Do not use JavaScript getters/setters as they cause unexpected side effects and are harder to test, maintain, and reason about. Instead, if you do make accessor functions, use getVal() and setVal('hello').
+  - [24.2](#accessors--no-getters-setters) Do not use JavaScript getters/setters as they cause unexpected side effects and are harder to test, maintain, and reason about. Instead, if you do make accessor functions, use `getVal()` and `setVal('hello')`.
   <a name="accessors--no-getters-setters"></a><a name="23.2"></a>
-  - [24.2](#accessors--no-getters-setters) 자바스크립트 getters/setters를 사용하지 마세요. 예기치못한 부작용를 일으키고 테스트와 유지보수를 어렵게 만듭니다. 접근자 함수를 만들고 싶다면 대신, getVal()과 setVal('hello')를 사용하세요.
+  - [24.2](#accessors--no-getters-setters) 자바스크립트 getters/setters를 사용하지 마세요. 예기치못한 부작용를 일으키고 테스트와 유지보수를 어렵게 만듭니다. 접근자 함수를 만들고 싶다면 대신, `getVal()`과 `setVal('hello')`를 사용하세요.
 
     ```javascript
     // bad
@@ -3779,9 +3779,9 @@ This guide is available in other languages too. See [Translation](#translation)
     ```
 
   <a name="accessors--consistent"></a><a name="23.4"></a>
-  - [24.4](#accessors--consistent) It’s okay to create get() and set() functions, but be consistent.
+  - [24.4](#accessors--consistent) It’s okay to create `get()` and `set()` functions, but be consistent.
   <a name="accessors--consistent"></a><a name="23.4"></a>
-  - [24.4](#accessors--consistent) get()과 set() 함수를 만들되, 일관성있게 만드세요.
+  - [24.4](#accessors--consistent) `get()`과 `set()` 함수를 만들되, 일관성있게 만드세요.
 
     ```javascript
     class Jedi {
