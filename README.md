@@ -2,7 +2,7 @@
 
 # Airbnb JavaScript 스타일 가이드() {
 
-*대체로 합리적인 JavaScript에 대한 접근 방법*
+*대체로 합리적인 JavaScript 접근 방법*
 
 > **Note**: this guide assumes you are using [Babel](https://babeljs.io), and requires that you use [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) or the equivalent. It also assumes you are installing shims/polyfills in your app, with [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) or the equivalent.
 
@@ -11,8 +11,6 @@
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-This guide is available in other languages too. See [Translation](#translation)
 
 이 스타일 가이드는 다른 언어로도 제공됩니다. [Translation](#translation)을 보세요.
 
@@ -192,7 +190,7 @@ This guide is available in other languages too. See [Translation](#translation)
   <a name="es6-computed-properties"></a><a name="3.4"></a>
   - [3.2](#es6-computed-properties) Use computed property names when creating objects with dynamic property names.
   <a name="es6-computed-properties"></a><a name="3.4"></a>
-  - [3.2](#es6-computed-properties) 동적 속성명을 갖는 객체를 생성할 때는 속성 계산명을 사용하세요.
+  - [3.2](#es6-computed-properties) 속성 계산명을 갖는 객체를 생성할 때는 속성 계산명을 사용하세요.
 
     > Why? They allow you to define all the properties of an object in one place.
 
@@ -308,7 +306,7 @@ This guide is available in other languages too. See [Translation](#translation)
 
     > Why? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
 
-    > 왜? 일반적으로 이렇게 하는 것이 더 읽기 쉽다고 생각합니다. 이렇게 하면 구문 강조를 개선하고, 많은 자바스크립트 엔진으로 하여금 더 쉽게 최적화 하도록 할 수 있습니다.
+    > 왜? 일반적으로 이렇게 하는 것이 더 읽기 쉽습니다. 이렇게 하면 구문 강조를 개선하고, 많은 자바스크립트 엔진으로 하여금 더 쉽게 최적화 하도록 할 수 있습니다.
 
     ```javascript
     // bad
@@ -504,6 +502,7 @@ This guide is available in other languages too. See [Translation](#translation)
   - [4.7](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
   <a name="arrays--bracket-newline"></a>
   - [4.7](#arrays--bracket-newline) 배열이 여러 줄에 걸쳐 있다면 배열을 연 이후와 닫기 이전에 줄바꿈을 해주세요. 
+
     ```javascript
     // bad
     const arr = [
@@ -820,7 +819,7 @@ This guide is available in other languages too. See [Translation](#translation)
 
     > Why? `...` is explicit about which arguments you want pulled. Plus, rest arguments are a real Array, and not merely Array-like like `arguments`.
 
-    > 왜? `...`을 사용하면 몇 개의 매개변수를 이용하고 싶은지를 확실히 할 수 있습니다. 더해서, 나머지 매개변수(rest arguments)는 `arguments` 와 같은 Array-like 객체가 아닌 진짜 Array입니다.
+    > 왜? `...`을 사용하면 몇 개의 매개변수를 이용하고 싶은지를 확실히 할 수 있습니다. 더 나아가, 나머지 매개변수(rest arguments)는 `arguments` 와 같은 Array-like 객체가 아닌 진짜 Array입니다.
 
     ```javascript
     // bad
@@ -1135,9 +1134,8 @@ This guide is available in other languages too. See [Translation](#translation)
 
   <a name="arrows--paren-wrap"></a><a name="8.3"></a>
   - [8.3](#arrows--paren-wrap) In case the expression spans over multiple lines, wrap it in parentheses for better readability.
-
   <a name="arrows--paren-wrap"></a><a name="8.3"></a>
-  - [8.3](#arrows--paren-wrap) 표현식이 여러 줄에 걸쳐 있을 때는 가독성을 좋게 하기 위해 소괄호로 감싸주세요.
+  - [8.3](#arrows--paren-wrap) 표현식이 여러 줄에 걸쳐 있을 때는 가독성을 높이기 위해 소괄호로 감싸주세요.
 
     > Why? It shows clearly where the function starts and ends.
 
@@ -1281,7 +1279,7 @@ This guide is available in other languages too. See [Translation](#translation)
 
     > Why? It is a built-in way to inherit prototype functionality without breaking `instanceof`.
 
-    > 왜? `instanceof`를 파괴하지 않고 프토로타입 상속을 하기 위해 빌트인된 방법이기 때문입니다.
+    > 왜? `instanceof`를 파괴하지 않고 프토로타입 상속을 하기 위해 내장된 방법이기 때문입니다.
 
     ```javascript
     // bad
@@ -1454,7 +1452,7 @@ This guide is available in other languages too. See [Translation](#translation)
 
     > Why? This makes sure you have a single default export.
 
-    > 왜? single default export임을 주의할 필요가 있습니다.
+    > 왜? single default export임을 확실히 할 수 있습니다.
 
     ```javascript
     // bad
@@ -1490,6 +1488,7 @@ This guide is available in other languages too. See [Translation](#translation)
   <a name="modules--no-duplicate-imports"></a>
   - [10.4](#modules--no-duplicate-imports) 같은 경로는 한 곳에서 improt하세요.
  eslint: [`no-duplicate-imports`](https://eslint.org/docs/rules/no-duplicate-imports)
+
     > Why? Having multiple lines that import from the same path can make code harder to maintain.
 
     > 왜? 같은 경로에서 import하는 여러 줄의 코드는 유지보수를 어렵게 만듭니다.
@@ -1516,6 +1515,7 @@ This guide is available in other languages too. See [Translation](#translation)
   <a name="modules--no-mutable-exports"></a>
   - [10.5](#modules--no-mutable-exports) 변경 가능한 바인딩을 export하지 마세요.
  eslint: [`import/no-mutable-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
+
     > Why? Mutation should be avoided in general, but in particular when exporting mutable bindings. While this technique may be needed for some special cases, in general, only constant references should be exported.
 
     > 왜? 변경은 일반적으로 피해야 하지만, 변경 가능한 바인딩을 export할 때는 특히 그렇습니다. 이 기술이 어떤 특별한 상황에만 필요할 수도 있지만, 일반적으로는 상수 참조만 export되어야 합니다.
@@ -1536,6 +1536,7 @@ This guide is available in other languages too. See [Translation](#translation)
   <a name="modules--prefer-default-export"></a>
   - [10.6](#modules--prefer-default-export) 한가지만 export하는 모듈에서는 이름 붙여진 export보다는 default export를 사용하세요.
  eslint: [`import/prefer-default-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md)
+
     > Why? To encourage more files that only ever export one thing, which is better for readability and maintainability.
 
     > 왜? 하나만 export하는 파일의 가독성과 유지보수성이 더 좋기 때문입니다.
@@ -1554,6 +1555,7 @@ This guide is available in other languages too. See [Translation](#translation)
    <a name="modules--imports-first"></a>
   - [10.7](#modules--imports-first) 모든 `import`구문을 다른 구문들 위에 두세요.
  eslint: [`import/first`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/first.md)
+
     > Why? Since `import`s are hoisted, keeping them all at the top prevents surprising behavior.
 
     > 왜? `import`구문은 호이스트되기 때문에 이것을 가장 위에 두면 예상치 못한 결과를 막을 수 있습니다.
@@ -1876,7 +1878,7 @@ This guide is available in other languages too. See [Translation](#translation)
 
     > Why? `let` and `const` are block scoped and not function scoped.
 
-    > 왜? `let`과 `const`는 블록스코프이기 때문이빈다. 함수스코프가 아닙니다.
+    > 왜? `let`과 `const`는 블록스코프이기 때문입니다. 함수스코프가 아닙니다.
 
     ```javascript
     // bad - unnecessary function call
