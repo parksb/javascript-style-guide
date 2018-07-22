@@ -421,11 +421,12 @@
     // good
     const itemsCopy = [...items];
     ```
-
-  <a name="arrays--from"></a><a name="4.4"></a>
-  - [4.4](#arrays--from) To convert an array-like object to an array, use spreads `...` instead of [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
-  <a name="arrays--from"></a><a name="4.4"></a>
-  - [4.4](#arrays--from) array-like 객체를 배열로 변환할 때는 [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from)대신 전개 연산자 `...`을 사용하세요.
+  <a name="arrays--from"></a>
+  <a name="arrays--from-iterable"></a><a name="4.4"></a>
+  - [4.4](#arrays--from-iterable) To convert an iterable object to an array, use spreads `...` instead of [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
+  <a name="arrays--from"></a>
+  <a name="arrays--from-iterable"></a><a name="4.4"></a>
+  - [4.4](#arrays--from-iterable) 이터레이트 가능한 객체를 배열로 변환할 때는 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 대신 전개 연산자 `...`를 사용하세요. 
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
@@ -437,9 +438,24 @@
     const nodes = [...foo];
     ```
 
+  <a name="arrays--from-array-like"></a>
+  - [4.5](#arrays--from-array-like) Use [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) for converting an array-like object to an array.
+  <a name="arrays--from-array-like"></a>
+  - [4.5](#arrays--from-array-like) array-like 객체를 배열로 변환할 때는 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from)을 사용하세요.
+
+    ```javascript
+    const arrLike = { 0: 'foo', 1: 'bar', 2: 'baz', length: 3 };
+
+    // bad
+    const arr = Array.prototype.slice.call(arrLike);
+
+    // good
+    const arr = Array.from(arrLike);
+    ```
+
   <a name="arrays--mapping"></a>
-  - [4.5](#arrays--mapping) Use [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) instead of spread `...` for mapping over iterables, because it avoids creating an intermediate array.
-  - [4.5](#arrays--mapping) 매핑할 때는 전개 연산자 `...` 대신 [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from)을 사용하세요. 중간 배열 생성을 방지하기 때문입니다.
+  - [4.6](#arrays--mapping) Use [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) instead of spread `...` for mapping over iterables, because it avoids creating an intermediate array.
+  - [4.6](#arrays--mapping) 매핑할 때는 전개 연산자 `...` 대신 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from)을 사용하세요. 중간 배열 생성을 방지하기 때문입니다.
   
     ```javascript
     // bad
@@ -450,9 +466,9 @@
     ```
 
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.6](#arrays--callback-return) Use return statements in array method callbacks. It’s ok to omit the return if the function body consists of a single statement returning an expression without side effects, following [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
+  - [4.7](#arrays--callback-return) Use return statements in array method callbacks. It’s ok to omit the return if the function body consists of a single statement returning an expression without side effects, following [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.6](#arrays--callback-return) 배열 메소드 콜백에는 리턴 구문을 사용하세요. 만약 함수가 [8.2](#arrows--implicit-return)와 같이 부작용 없는 단일 표현식을 반환하는 구문으로 구성되어 있다면 리턴 구문을 생략해도 됩니다. eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
+  - [4.7](#arrays--callback-return) 배열 메소드 콜백에는 리턴 구문을 사용하세요. 만약 함수가 [8.2](#arrows--implicit-return)와 같이 부작용 없는 단일 표현식을 반환하는 구문으로 구성되어 있다면 리턴 구문을 생략해도 됩니다. eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
   
     ```javascript
     // good
@@ -499,9 +515,9 @@
     ```
 
   <a name="arrays--bracket-newline"></a>
-  - [4.7](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
+  - [4.8](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
   <a name="arrays--bracket-newline"></a>
-  - [4.7](#arrays--bracket-newline) 배열이 여러 줄에 걸쳐 있다면 배열을 연 이후와 닫기 이전에 줄바꿈을 해주세요. 
+  - [4.8](#arrays--bracket-newline) 배열이 여러 줄에 걸쳐 있다면 배열을 연 이후와 닫기 이전에 줄바꿈을 해주세요. 
 
     ```javascript
     // bad
@@ -4207,6 +4223,7 @@
   - **Bonhomme**: [bonhommeparis/javascript](https://github.com/bonhommeparis/javascript)
   - **Brainshark**: [brainshark/javascript](https://github.com/brainshark/javascript)
   - **CaseNine**: [CaseNine/javascript](https://github.com/CaseNine/javascript)
+  - **Cerner**: [Cerner](https://github.com/cerner/)
   - **Chartboost**: [ChartBoost/javascript-style-guide](https://github.com/ChartBoost/javascript-style-guide)
   - **ComparaOnline**: [comparaonline/javascript](https://github.com/comparaonline/javascript-style-guide)
   - **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
