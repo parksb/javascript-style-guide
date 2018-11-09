@@ -1147,7 +1147,7 @@
     ```
 
   <a name="constructors--chaining"></a><a name="9.3"></a>
-  - [9.3](#constructors--chaining) 메소드가 `this`를 반환하게 함으로써 메소드 체이닝울 할 수 있습니다.
+  - [9.3](#constructors--chaining) 메소드가 `this`를 반환하게 함으로써 메소드 체이닝 할 수 있습니다.
 
     ```javascript
     // bad
