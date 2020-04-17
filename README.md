@@ -73,6 +73,7 @@
     - `null`
     - `undefined`
     - `symbol`
+    - `bigint`
 
     ```javascript
     const foo = 1;
@@ -83,7 +84,7 @@
     console.log(foo, bar); // => 1, 9
     ```
 
-    - symbol은 완전히 폴리필되지 않으므로, 이를 지원하지 않는 브라우저/환경을 대상으로 사용해서는 안 됩니다. 
+    - symbol과 bigint는 완전히 폴리필되지 않으므로, 이를 지원하지 않는 브라우저/환경을 대상으로 사용해서는 안 됩니다. 
 
   <a name="types--complex"></a><a name="1.2"></a>
   - [1.2](#types--complex)  **참조형**: 참조형에 접근하면 참조를 통해 값을 조작하게 됩니다.
@@ -157,7 +158,7 @@
 ## 객체 (Objects)
 
   <a name="objects--no-new"></a><a name="3.1"></a>
-  - [3.1](#objects--no-new) 객체를 생성할 때는 리터럴 구문을 사용하세요. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object.html)
+  - [3.1](#objects--no-new) 객체를 생성할 때는 리터럴 문법을 사용하세요. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object.html)
 
     ```javascript
     // bad
@@ -168,7 +169,7 @@
     ```
 
   <a name="es6-computed-properties"></a><a name="3.4"></a>
-  - [3.2](#es6-computed-properties) 속성 계산명을 갖는 객체를 생성할 때는 속성 계산명을 사용하세요.
+  - [3.2](#es6-computed-properties) 동적 속성을 갖는 객체를 생성할 때는 속성 계산명을 사용하세요.
 
     > 왜? 이렇게 하면 객체의 모든 속성을 한 곳에서 정의할 수 있습니다. 
 
@@ -236,9 +237,9 @@
     ```
 
   <a name="objects--grouped-shorthand"></a><a name="3.7"></a>
-  - [3.5](#objects--grouped-shorthand) 속성의 단축구문은 객체 선언의 시작 부분에 그룹화 해주세요.
+  - [3.5](#objects--grouped-shorthand) 속성의 단축구문은 객체 선언의 시작 부분에 모아주세요.
 
-    > 왜? 어떤 속성이 단축구문을 사용하고 있는지 알기 쉽게 해주기 때문입니다.
+    > 왜? 어떤 속성이 단축구문을 사용하고 있는지 알기 쉽게 해줍니다.
 
     ```javascript
     const anakinSkywalker = 'Anakin Skywalker';
@@ -268,7 +269,7 @@
   <a name="objects--quoted-props"></a><a name="3.8"></a>
   - [3.6](#objects--quoted-props) 유효하지 않은 식별자에만 따옴표 속성을 사용하세요. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props.html)
 
-    > 왜? 일반적으로 이렇게 하는 것이 더 읽기 쉽습니다. 이렇게 하면 구문 강조를 개선하고, 많은 자바스크립트 엔진으로 하여금 더 쉽게 최적화 하도록 할 수 있습니다.
+    > 왜? 더 읽기 쉽습니다. 이렇게 하면 구문 하이라이팅이 잘 되고, 많은 자바스크립트 엔진이 더 쉽게 최적화 할 수 있습니다.
 
     ```javascript
     // bad
@@ -299,11 +300,11 @@
     console.log(Object.prototype.hasOwnProperty.call(object, key));
 
     // best
-    const has = Object.prototype.hasOwnProperty; // cache the lookup once, in module scope.
+    const has = Object.prototype.hasOwnProperty; // 모듈스코프에서 한 번 캐시하세요.
+    console.log(has.call(object, key));
     /* or */
     import has from 'has'; // https://www.npmjs.com/package/has
-    // ...
-    console.log(has.call(object, key));
+    console.log(has(object, key));
     ```
 
   <a name="objects--rest-spread"></a>
@@ -312,8 +313,8 @@
     ```javascript
     // very bad
     const original = { a: 1, b: 2 };
-    const copy = Object.assign(original, { c: 3 }); // this mutates `original` ಠ_ಠ
-    delete copy.a; // so does this
+    const copy = Object.assign(original, { c: 3 }); // `original`을 변조합니다 ಠ_ಠ
+    delete copy.a; // 그래서 이렇게 합니다 
 
     // bad
     const original = { a: 1, b: 2 };
@@ -373,7 +374,7 @@
 
   <a name="arrays--from"></a>
   <a name="arrays--from-iterable"></a><a name="4.4"></a>
-  - [4.4](#arrays--from-iterable) 이터레이트 가능한 객체를 배열로 변환할 때는 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 대신 전개 연산자 `...`를 사용하세요. 
+  - [4.4](#arrays--from-iterable) 순회 가능한 객체(iterable object)를 배열로 변환할 때는 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 대신 전개 연산자 `...`를 사용하세요. 
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
@@ -500,7 +501,7 @@
   <a name="destructuring--object"></a><a name="5.1"></a>
   - [5.1](#destructuring--object) 하나의 객체에서 여러 속성에 접근할 때는 객체 비구조화를 사용하세요. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
 
-    > 왜? 비구조화는 속성들을 위한 임시적인 참조를 만들지 않도록 해줍니다.
+    > 왜? 비구조화는 속성들을 위한 임시 참조를 만들지 않도록 해줍니다.
 
     ```javascript
     // bad
@@ -545,20 +546,20 @@
     ```javascript
     // bad
     function processInput(input) {
-      // 그리고 기적이 일어납니다
+      // 기적이 일어납니다
       return [left, right, top, bottom];
     }
 
-    // 호출처에서 반환된 데이터의 순서를 고려할 필요가 있습니다
+    // 반환되는 데이터의 순서를 생각해야합다
     const [left, __, top] = processInput(input);
 
     // good
     function processInput(input) {
-      // 그리고 기적이 일어납니다
+      // 기적이 일어납니다
       return { left, right, top, bottom };
     }
 
-    // 호출처에서는 필요한 데이터만 선택하면 됩니다
+    // 필요한 데이터만 선택하면 됩니다
     const { left, top } = processInput(input);
     ```
 
@@ -602,9 +603,9 @@
     ```
 
   <a name="es6-template-literals"></a><a name="6.4"></a>
-  - [6.3](#es6-template-literals) 프로그램에서 문자열을 생성하는 경우, 문자열 연결 대신 템플릿 문자열을 사용하세요. eslint: [`prefer-template`](https://eslint.org/docs/rules/prefer-template.html) [`template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing)
+  - [6.3](#es6-template-literals) 문자열을 생성하는 경우, 문자열 연결 대신 템플릿 문자열을 사용하세요. eslint: [`prefer-template`](https://eslint.org/docs/rules/prefer-template.html) [`template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing)
 
-    > 왜? 템플릿 문자열은 덧붙이기 기능과 적절한 줄바꿈 기능을 제공하는 간결한 문법으로, 가독성을 높여주기 때문입니다.
+    > 왜? 템플릿 문자열은 덧붙이기와 줄바꿈을 제공하는 간결한 문법으로, 가독성을 높여줍니다.
 
     ```javascript
     // bad
@@ -629,12 +630,12 @@
     ```
 
   <a name="strings--eval"></a><a name="6.5"></a>
-  - [6.4](#strings--eval) 절대로 문자열에 `eval()`을 사용하지 마세요. 이는 너무나도 많은 취약점을 만듭니다. eslint: [`no-eval`](https://eslint.org/docs/rules/no-eval)
+  - [6.4](#strings--eval) 절대로 문자열에 `eval()`을 사용하지 마세요. 너무나 많은 취약점을 만듭니다. eslint: [`no-eval`](https://eslint.org/docs/rules/no-eval)
 
   <a name="strings--escaping"></a>
   - [6.5](#strings--escaping) 문자열에 불필요한 이스케이프 문자를 사용하지 마세요. eslint: [`no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape)
 
-    > 왜? 백슬래시는 가독성을 해치기 때문에 필요할 때만 사용되어야 합니다.
+    > 왜? 백슬래시는 가독성을 해치기 때문에 필요할 때만 사용해야 합니다.
 
     ```javascript
     // bad
@@ -650,9 +651,9 @@
 ## 함수 (Functions)
 
   <a name="functions--declarations"></a><a name="7.1"></a>
-  - [7.1](#functions--declarations) 함수선언식 대신 이름있는 함수표현식을 사용하세요. eslint: [`func-style`](https://eslint.org/docs/rules/func-style)
+  - [7.1](#functions--declarations) 함수선언식 대신 기명 함수표현식을 사용하세요. eslint: [`func-style`](https://eslint.org/docs/rules/func-style)
 
-    > 왜? 함수선언은 호이스트됩니다. 즉, 파일에서 함수를 정의하기 전에 함수를 참조하는 것이 쉽다는 것-너무 쉽다는 것-을 의미합니다. 이것은 가독성과 유지관리성를 해칩니다. 만약 함수의 정의가 나머지 파일을 이해하는데 방해가 될 정도로 크거나 복잡하다는 것을 발견한다면, 이제 함수를 모듈 밖으로 추출해내야 할 때라는 의미입니다! 포함된 변수로부터 추론된 이름인지와 관계 없이(현대 브라우저 또는 Babel과 같은 컴파일러를 쓸 때 흔히 볼 수 있듯이) 표현의 이름을 명시적으로 짓는 것을 잊지 마세요. 이를 통해 Error 콜 스택에 대한 모든 추정을 제거할 수 있습니다. ([토론](https://github.com/airbnb/javascript/issues/794))
+    > 왜? 함수선언은 호이스트됩니다. 즉, 파일에서 함수를 정의하기 전에 함수를 참조하는 것이 쉽다는 것 - 너무 쉽다는 것 - 을 의미합니다. 이것은 가독성과 유지관리성를 해칩니다. 만약 함수의 정의가 나머지 파일을 이해하는데 방해가 될 정도로 크거나 복잡하다면, 이제 함수를 모듈 밖으로 추출해내야 할 때입니다! 포함된 변수로부터 추론된 이름인지와 관계 없이(현대 브라우저 또는 Babel과 같은 컴파일러를 쓸 때 흔히 볼 수 있듯이) 표현의 이름을 명시적으로 짓는 것을 잊지 마세요. 이를 통해 Error 콜 스택에 대한 모든 추정을 제거할 수 있습니다. ([토론](https://github.com/airbnb/javascript/issues/794))
 
     ```javascript
     // bad
@@ -666,7 +667,7 @@
     };
 
     // good
-    // lexical name distinguished from the variable-referenced invocation(s)
+    // 변수 참조 호출과 구분되는 이름
     const short = function longUniqueMoreDescriptiveLexicalFoo() {
       // ...
     };
@@ -688,7 +689,7 @@
   - [7.3](#functions--in-blocks) 함수 이외의 불록(`if`, `while`, 등)에서 함수를 선언하지 마세요. 브라우저는 이를 허용하겠지만, 모두 다르게 해석합니다. eslint: [`no-loop-func`](https://eslint.org/docs/rules/no-loop-func.html)
 
   <a name="functions--note-on-blocks"></a><a name="7.4"></a>
-  - [7.4](#functions--note-on-blocks) **참고:** ECMA-262 사양은 `block`을 구문의 일람으로 정의하고 있지만 함수선언은 구문이 아닙니다.
+  - [7.4](#functions--note-on-blocks) **참고:** ECMA-262 명세는 `블록`을 구문의 일종으로 정의하고 있지만 함수선언은 구문이 아닙니다.
 
     ```javascript
     // bad
@@ -725,7 +726,7 @@
   <a name="es6-rest"></a><a name="7.6"></a>
   - [7.6](#es6-rest) 절대 `arguments`를 사용하지마세요. 대신 나머지 문법(rest syntax) `...`를 사용하세요. eslint: [`prefer-rest-params`](https://eslint.org/docs/rules/prefer-rest-params)
 
-    > 왜? `...`을 사용하면 몇 개의 매개변수를 이용하고 싶은지를 확실히 할 수 있습니다. 더 나아가, 나머지 매개변수(rest arguments)는 `arguments` 와 같은 Array-like 객체가 아닌 진짜 Array입니다.
+    > 왜? `...`을 사용하면 몇 개의 매개변수를 이용하고 싶은지 확실히 할 수 있습니다. 더 나아가, 나머지 인자(rest arguments)는 `arguments` 와 같은 Array-like 객체가 아닌 진짜 Array입니다.
 
     ```javascript
     // bad
@@ -741,14 +742,14 @@
     ```
 
   <a name="es6-default-parameters"></a><a name="7.7"></a>
-  - [7.7](#es6-default-parameters) 함수의 매개변수를 바꾸기 보다는 기본 매개변수 문법을 사용하세요.
+  - [7.7](#es6-default-parameters) 함수의 인자를 변조하기 보다는 기본 매개변수 문법을 사용하세요.
 
     ```javascript
     // really bad
     function handleThings(opts) {
-      // No! We shouldn’t mutate function arguments.
-      // Double bad: if opts is falsy it'll be set to an object which may
-      // be what you want but it can introduce subtle bugs.
+      // 안돼요! 우리는 함수 인자를 변경하면 안됩니다.
+      // 더 안 좋은 경우: 만약 opts가 falsy한 값일 경우 당신이 원하는 객체로
+      // 설정되겠지만, 이는 미묘한 버그를 일으킬 수 있습니다.
       opts = opts || {};
       // ...
     }
@@ -768,7 +769,7 @@
     ```
 
   <a name="functions--default-side-effects"></a><a name="7.8"></a>
-  - [7.8](#functions--default-side-effects) 부작용이 있을 기본 매개변수는 사용하지 마세요.
+  - [7.8](#functions--default-side-effects) 부작용이 있을만한 기본 매개변수는 사용하지 마세요.
 
     > 왜? 혼란을 야기하기 때문입니다.
 
@@ -802,7 +803,7 @@
   <a name="functions--constructor"></a><a name="7.10"></a>
   - [7.10](#functions--constructor) 절대로 새로운 함수를 만들기 위해 함수 생성자를 사용하지 마세요. eslint: [`no-new-func`](https://eslint.org/docs/rules/no-new-func)
 
-    > 왜? 이러한 방법으로 문자열을 평가해 함수를 만드는 것은 eval()과 같은 수준의 취약점을 만듭니다.
+    > 왜? 이러한 방법으로 문자열을 평가해 함수를 만드는 것은 `eval()`과 같은 수준의 취약점을 만듭니다.
 
     ```javascript
     // bad
@@ -876,7 +877,7 @@
   <a name="functions--spread-vs-apply"></a><a name="7.14"></a>
   - [7.14](#functions--spread-vs-apply) 가변 인자 함수를 호출할 때는 전개 연산자 `...`을 사용하세요. eslint: [`prefer-spread`](https://eslint.org/docs/rules/prefer-spread)
 
-    > 왜? 이게 더 깔끔하니까요. 컨텍스트를 제공할 필요도 없고, `apply`로 `new`를 쉽게 구성할 수도 없습니다.
+    > 왜? 이게 더 깔끔합니다. 컨텍스트를 제공할 필요도 없고, `apply`로 `new`를 쉽게 구성할 수도 없습니다.
 
     ```javascript
     // bad
@@ -979,11 +980,11 @@
       [index]: number,
     }));
 
-    // No implicit return with side effects
+    // 암시적 반환없이 부작용을 수반합니다
     function foo(callback) {
       const val = callback();
       if (val === true) {
-        // Do something if callback returns true
+        // callback이 참을 반환하면 뭔가를 수행합니다
       }
     }
 
@@ -1021,19 +1022,24 @@
     ```
 
   <a name="arrows--one-arg-parens"></a><a name="8.4"></a>
-  - [8.4](#arrows--one-arg-parens) 함수의 인자가 하나인 경우 소괄호를 생략할 수 있습니다. 그 외에는 명확성과 일관성을 위해 항상 괄호를 사용하세요. 참고: 모든 경우에 괄호를 사용하는 것도 괜찮습니다. 이 경우 eslint에서 [“always” 옵션](https://eslint.org/docs/rules/arrow-parens#always)을 사용하거나 jscs에 [`disallowParenthesesAroundArrowParam`](http://jscs.info/rule/disallowParenthesesAroundArrowParam)를 포함하지 마세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html)
+  - [8.4](#arrows--one-arg-parens) 명확성과 읽관성을 위해 항상 인자를 괄호로 감싸세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html)
 
-    > 왜? 별로 보기 어렵지 않기 때문입니다.
+    > 왜? 인자를 추가하거나 제거할 때 변경 사항을 최소화할 수 있습니다.
 
     ```javascript
     // bad
-    [1, 2, 3].map((x) => x * x);
-
-    // good
     [1, 2, 3].map(x => x * x);
 
     // good
+    [1, 2, 3].map((x) => x * x);
+
+    // bad
     [1, 2, 3].map(number => (
+      `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
+    ));
+
+    // good
+    [1, 2, 3].map((number) => (
       `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
     ));
 
@@ -1234,7 +1240,7 @@
   <a name="classes--no-duplicate-members"></a>
   - [9.6](#classes--no-duplicate-members) 중복되는 클래스 멤버를 만들지 마세요. eslint: [`no-dupe-class-members`](https://eslint.org/docs/rules/no-dupe-class-members)
 
-    > 왜? 중복된 클래스 멤버를 선언하는 것은 암묵적으로 마지막 것을 취하는 것입니다. 중복은 거의 확실히 버그입니다.
+    > 왜? 중복된 클래스 멤버를 선언하면 암묵적으로 마지막 멤버가 적용됩니다. 중복은 확실히 버그입니다.
 
     ```javascript
     // bad
@@ -1254,12 +1260,45 @@
     }
     ```
 
+  <a name="classes--methods-use-this"></a>
+  - [9.7](#classes--methods-use-this) 클래스 메소드는 외부 라이브러리나 프레임워크가 구체적으로 비정적 메소드를 요구하지 않는 이상 `this`를 사용하거나 해당 메소드를 정적 메소드로 만들어야 합니다. 인스턴스 메서드는 수신자의 속성에 따라 다르게 동작함을 나타내야 합니다. eslint: [`class-methods-use-this`](https://eslint.org/docs/rules/class-methods-use-this)
+
+    ```javascript
+    // bad
+    class Foo {
+      bar() {
+        console.log('bar');
+      }
+    }
+
+    // good - this를 사용했습니다
+    class Foo {
+      bar() {
+        console.log(this.bar);
+      }
+    }
+
+    // good - constructor가 면제됩니다
+    class Foo {
+      constructor() {
+        // ...
+      }
+    }
+
+    // good - 정적 메소드는 this를 사용하지 않는다고 예상할 수 있습니다
+    class Foo {
+      static bar() {
+        console.log('bar');
+      }
+    }
+    ```    
+
 **[⬆ back to top](#목차)**
 
 ## 모듈 (Modules)
 
   <a name="modules--use-them"></a><a name="10.1"></a>
-  - [10.1](#modules--use-them) 비표준 모듈 시스템이 아니라면 항상 모듈(`import`/`export`)을 사용하세요. 이를 통해 선호하는 모듈 시스템에 언제든 옮겨갈 수 있습니다.
+  - [10.1](#modules--use-them) 비표준 모듈 시스템에는 항상 모듈(`import`/`export`)을 사용하세요. 이를 통해 선호하는 모듈 시스템으로 트랜스파일할 수 있습ㄴ니다.
 
     > 왜? 모듈은 미래입니다. 지금 그 미래를 사용해 시작합니다.
 
@@ -1307,7 +1346,7 @@
     ```
 
   <a name="modules--no-duplicate-imports"></a>
-  - [10.4](#modules--no-duplicate-imports) 같은 경로는 한 곳에서 improt하세요.
+  - [10.4](#modules--no-duplicate-imports) 같은 경로는 한 곳에서 import하세요.
  eslint: [`no-duplicate-imports`](https://eslint.org/docs/rules/no-duplicate-imports)
 
     > 왜? 같은 경로에서 import하는 여러 줄의 코드는 유지보수를 어렵게 만듭니다.
@@ -1315,7 +1354,7 @@
     ```javascript
     // bad
     import foo from 'foo';
-    // … some other imports … //
+    // … 또 다른 imports … //
     import { named1, named2 } from 'foo';
 
     // good
@@ -1329,10 +1368,10 @@
     ```
 
   <a name="modules--no-mutable-exports"></a>
-  - [10.5](#modules--no-mutable-exports) 변경 가능한 바인딩을 export하지 마세요.
+  - [10.5](#modules--no-mutable-exports) 가변 바인딩을 export하지 마세요.
  eslint: [`import/no-mutable-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
 
-    > 왜? 변경은 일반적으로 피해야 하지만, 변경 가능한 바인딩을 export할 때는 특히 그렇습니다. 이 기술이 어떤 특별한 상황에만 필요할 수도 있지만, 일반적으로는 상수 참조만 export되어야 합니다.
+    > 왜? 변조는 일반적으로 피해야 하지만, 가변 바인딩을 export할 때는 특히 그렇습니다. 이 기술이 어떤 특별한 상황에 필요할 수도 있지만, 일반적으로는 상수 참조만 export되어야 합니다.
 
     ```javascript
     // bad
@@ -1413,6 +1452,24 @@
     import barCss from 'bar.css';
     ```
 
+  <a name="modules--import-extensions"></a>
+  - [10.10](#modules--import-extensions) 자바스크립트 파일 확장자를 명시하지 마세요.
+ eslint: [`import/extensions`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md)
+
+    > 왜? 확장자를 명시하면 모든 소비자에서 import하는 모듈의 세부적 구현을 부적절하게 하드코딩하고, 리팩토링을 막게 됩니다.
+
+    ```javascript
+    // bad
+    import foo from './foo.js';
+    import bar from './bar.jsx';
+    import baz from './baz/index.jsx';
+
+    // good
+    import foo from './foo';
+    import bar from './bar';
+    import baz from './baz';
+    ```
+
 **[⬆ back to top](#목차)**
 
 ## 이터레이터와 제너레이터 (Iterators and Generators)
@@ -1464,7 +1521,7 @@
   <a name="generators--nope"></a><a name="11.2"></a>
   - [11.2](#generators--nope) 지금은 제너레이터를 사용하지 마세요.
 
-    > 왜? ES5로 잘 트랜스파일하지 않기 때문입니다.
+    > 왜? ES5로 잘 트랜스파일되지 않기 때문입니다.
 
   <a name="generators--spacing"></a>
   - [11.3](#generators--spacing) 만약 반드시 제너레이터를 사용해야 하거나 [우리의 조언](#generators--nope)을 무시하는 경우, 함수 시그니처의 공백이 적절한지 확인하세요. eslint: [`generator-star-spacing`](https://eslint.org/docs/rules/generator-star-spacing)
@@ -1601,7 +1658,7 @@
         dragonball = 'z';
 
     // bad
-    // (compare to above, and try to spot the mistake)
+    // (위 코드와 비교해 실수를 짚어보세요)
     const items = getItems(),
         goSportsTeam = true;
         dragonball = 'z';
@@ -1685,10 +1742,11 @@
     ```javascript
     // bad
     (function example() {
-      // JavaScript interprets this as
+      // 자바스크립트는 이것을
       // let a = ( b = ( c = 1 ) );
-      // The let keyword only applies to variable a; variables b and c become
-      // global variables.
+      // 로 해석합니다.
+      // let 키워드는 변수 a에만 적용됩니다.
+      // 변수 b와 c는 전역 변수가 됩니다.
       let a = b = c = 1;
     }());
 
@@ -1707,7 +1765,7 @@
     console.log(b); // throws ReferenceError
     console.log(c); // throws ReferenceError
 
-    // the same applies for `const`
+    // `const`에도 동일하게 적용됩니다
     ```
 
   <a name="variables--unary-increment-decrement"></a><a name="13.6"></a>
@@ -1768,7 +1826,7 @@
     ```
 
 <a name="variables--no-unused-vars"></a>
-- [13.8](#variables--no-unused-vars) 사용되지 않는 변수를 남겨두지 마세요. eslint: [`no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars)
+- [13.8](#variables--no-unused-vars) 사용하지 않는 변수를 남겨두지 마세요. eslint: [`no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars)
 
     > 왜? 선언되었지만 사용되지 않는 변수는 완벽하지 않은 리팩토링으로 인한 에러일 수 있습니다. 그런 변수는 코드의 자리를 차지하며, 읽는 사람이 혼란에 빠지도록 만듭니다.
 
@@ -1777,15 +1835,15 @@
 
     var some_unused_var = 42;
 
-    // Write-only variables are not considered as used.
+    // 쓰기 전용 변수는 사용한 것으로 간주되지 않습니다.
     var y = 10;
     y = 5;
 
-    // A read for a modification of itself is not considered as used.
+    // 자신의 변경을 읽는 것은 사용한 것으로 간주되지 않습니다.
     var z = 0;
     z = z + 1;
 
-    // Unused function arguments.
+    // 사용되지 않은 함수 인자.
     function getX(x, y) {
         return x;
     }
@@ -1798,13 +1856,13 @@
 
     var x = 1;
     var y = a + 2;
-
+ㅣ
     alert(getXPlusY(x, y));
 
-    // 'type' is ignored even if unused because it has a rest property sibling.
-    // This is a form of extracting an object that omits the specified keys.
+    // 'type'은 사용되지 않을 경우 무시됩니다. 나머지 속성의 형제이기 때문입니다.
+    // 이것은 특정 키를 생략하는 객체를 추출하는 형식입니다.
     var { type, ...coords } = data;
-    // 'coords' is now the 'data' object without its 'type' property.
+    // 'coords'는 이제 'data' 객체에서 'type' 속성이 빠진 'data' 객체입니다.
     ```
 
 **[⬆ back to top](#목차)**
@@ -1815,14 +1873,14 @@
   - [14.1](#hoisting--about) `var` 선언은 할당없이 가장 가까운 함수 스코프의 꼭대기에 호이스트됩니다. `const`와 `let` 선언은 [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_Dead_Zone)라고 불리는 새로운 개념의 혜택을 받습니다. [왜 typeof는 더 이상 안전하지 않은가](http://es-discourse.com/t/why-typeof-is-no-longer-safe/15)에 대해서 알고있는 것이 중요합니다.
 
     ```javascript
-    // (notDefined 가 글로벌변수에 존재하지 않는다고 판정한 경우)
-    // 잘 동작하지 않습니다
+    // (전역 변수 notDefined가 존재하지 않는다고 판정한 경우)
+    // 동작하지 않습니다
     function example() {
       console.log(notDefined); // => throws a ReferenceError
     }
 
     // 그 변수를 참조하는 코드의 뒤에서 그 변수를 선언한 경우
-    // 변수가 hoist 된 상태에서 동작합니다.
+    // 변수가 호이스트된 상태에서 동작합니다.
     // 주의：`true` 라는 값 자체는 호이스트되지 않습니다.
     function example() {
       console.log(declaredButNotAssigned); // => undefined
@@ -1876,8 +1934,7 @@
       };
     }
 
-    // the same is true when the function name
-    // is the same as the variable name.
+    // 함수 이름이 변수 이름과 동일할 때도 마찬가지다.
     function example() {
       console.log(named); // => undefined
 
@@ -1902,7 +1959,6 @@
     }
     ```
 
-  - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](http://www.adequatelygood.com/).
   - 더 자세한 정보는 이곳을 참고해주세요 [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](http://www.adequatelygood.com/).
 
 **[⬆ back to top](#목차)**
@@ -1925,7 +1981,7 @@
     ```javascript
     if ([0] && []) {
       // true
-      // an array (even an empty one) is an object, objects will evaluate to true
+      // 배열(빈 배열 포함)은 객체이며, 객체는 참으로 평가됩니다.
     }
     ```
 
@@ -2016,7 +2072,7 @@
     ```
 
   <a name="comparison--nested-ternaries"></a><a name="15.6"></a>
-  - [15.6](#comparison--nested-ternaries) 삼항 연산자는 중첩되어서는 안되며, 일반적으로 한 줄에 표현해야 합니다. eslint: [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary.html)
+  - [15.6](#comparison--nested-ternaries) 삼항 연산자를 중첩해서는 안되며, 일반적으로 한줄에 표현해야 합니다. eslint: [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary.html)
 
     ```javascript
     // bad
@@ -2052,9 +2108,9 @@
     ```
 
   <a name="comparison--no-mixed-operators"></a>
-  - [15.8](#comparison--no-mixed-operators) 연산자를 섞어 사용할 때 해당 연산자들을 괄호로 둘러싸세요. 유일한 예외는 산술 연산자 (`+`, `-`, `*`, & `/`)입니다. 이들의 우선순위가 광범위하게 이해되기 때문입니다. eslint: [`no-mixed-operators`](https://eslint.org/docs/rules/no-mixed-operators.html)
+  - [15.8](#comparison--no-mixed-operators) 연산자를 섞어 사용할 때 해당 연산자들을 괄호로 둘러싸세요. 유일한 예외는 산술 연산자 (`+`, `-`, `**`)입니다. 이들의 우선순위는 상식적으로 이해할 수 있습니다. `/`와 `*`은 섞일 경우 순서가 모호할 수 있으므로 괄호로 감싸는 것을 추천합니다. eslint: [`no-mixed-operators`](https://eslint.org/docs/rules/no-mixed-operators.html)
 
-    > 왜? 이렇게 하면 코드가 더 읽기 쉬워지며, 개발자의 의도가 명확해지기 때문입니다.
+    > 왜? 이렇게 하면 코드가 더 읽기 쉬워지며, 개발자의 의도가 명확해집니다.
 
     ```javascript
     // bad
@@ -2064,7 +2120,7 @@
     const bar = a ** b - 5 % d;
 
     // bad
-    // one may be confused into thinking (a || b) && c
+    // (a || b) && c 으로 혼동할 수 있습니다.
     if (a || b && c) {
       return d;
     }
@@ -2090,7 +2146,6 @@
 
   <a name="blocks--braces"></a><a name="16.1"></a>
   - [16.1](#blocks--braces) 여러 줄의 블록에는 중괄호를 사용하세요. eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
-
 
     ```javascript
     // bad
@@ -2281,8 +2336,8 @@
 
     ```javascript
     // bad
-    // make() returns a new element
-    // based on the passed in tag name
+    // make()는 전달된 태그명을 기반으로
+    // 새로운 요소를 반환한다. 
     //
     // @param {String} tag
     // @return {Element} element
@@ -2295,8 +2350,8 @@
 
     // good
     /**
-     * make() returns a new element
-     * based on the passed-in tag name
+     * make()는 전달된 태그명을 기반으로
+     * 새로운 요소를 반환한다.
      */
     function make(tag) {
 
@@ -2359,8 +2414,8 @@
 
     // bad
     /**
-     *make() returns a new element
-     *based on the passed-in tag name
+     *make()는 전달된 태그명을 기반으로
+     *새로운 요소를 반환한다.
      */
     function make(tag) {
 
@@ -2371,8 +2426,8 @@
 
     // good
     /**
-     * make() returns a new element
-     * based on the passed-in tag name
+     * make()는 전달된 태그명을 기반으로
+     * 새로운 요소를 반환한다.
      */
     function make(tag) {
 
@@ -2667,8 +2722,62 @@
     }
     ```
 
+  <a name="whitespace--no-multiple-blanks"></a>
+  - [19.9](#whitespace--no-multiple-blanks) 여러 빈 행을 두지 마세요. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
+
+    <!-- markdownlint-disable MD012 -->
+    ```javascript
+    // bad
+    class Person {
+      constructor(fullName, email, birthday) {
+        this.fullName = fullName;
+
+
+        this.email = email;
+
+
+        this.setAge(birthday);
+      }
+
+
+      setAge(birthday) {
+        const today = new Date();
+
+
+        const age = this.getAge(today, birthday);
+
+
+        this.age = age;
+      }
+
+
+      getAge(today, birthday) {
+        // ..
+      }
+    }
+
+    // good
+    class Person {
+      constructor(fullName, email, birthday) {
+        this.fullName = fullName;
+        this.email = email;
+        this.setAge(birthday);
+      }
+
+      setAge(birthday) {
+        const today = new Date();
+        const age = getAge(today, birthday);
+        this.age = age;
+      }
+
+      getAge(today, birthday) {
+        // ..
+      }
+    }
+    ```
+
   <a name="whitespace--in-parens"></a><a name="18.9"></a>
-  - [19.9](#whitespace--in-parens) 소괄호 안쪽에 공백을 두지 마세요. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens.html)
+  - [19.10](#whitespace--in-parens) 소괄호 안쪽에 공백을 두지 마세요. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens.html)
 
     ```javascript
     // bad
@@ -2693,7 +2802,7 @@
     ```
 
   <a name="whitespace--in-brackets"></a><a name="18.10"></a>
-  - [19.10](#whitespace--in-brackets) 대괄호 안쪽에 공백을 두지 마세요. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing.html)
+  - [19.11](#whitespace--in-brackets) 대괄호 안쪽에 공백을 두지 마세요. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing.html)
 
     ```javascript
     // bad
@@ -2706,7 +2815,7 @@
     ```
 
   <a name="whitespace--in-braces"></a><a name="18.11"></a>
-  - [19.11](#whitespace--in-braces) 중괄호 안쪽에 공백을 두세요. eslint: [`object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing.html)
+  - [19.12](#whitespace--in-braces) 중괄호 안쪽에 공백을 두세요. eslint: [`object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing.html)
 
     ```javascript
     // bad
@@ -2717,7 +2826,7 @@
     ```
 
   <a name="whitespace--max-len"></a><a name="18.12"></a>
-  - [19.12](#whitespace--max-len) 한줄의 코드가 100자를 넘기는 것을 피하세요. (공백 포함) 주의: [앞의 규칙](#strings--line-length)에 따르면, 긴 문자열은 이 규칙에서 제외되며, 분리되어서는 안 됩니다. eslint: [`max-len`](https://eslint.org/docs/rules/max-len.html)
+  - [19.13](#whitespace--max-len) 한줄의 코드가 100자를 넘기는 것을 피하세요. (공백 포함) 주의: [앞의 규칙](#strings--line-length)에 따르면, 긴 문자열은 이 규칙에서 제외되며, 분리되어서는 안 됩니다. eslint: [`max-len`](https://eslint.org/docs/rules/max-len.html)
 
     > 왜? 가독성과 유지보수성을 보장해주기 때문입니다.
 
@@ -2747,7 +2856,7 @@
     ```
 
     <a name="whitespace--block-spacing"></a>
-  - [19.13](#whitespace--block-spacing) 여는 블록 토큰과 같은 행의 다음 토큰 내의 공백을 일관성있게 하세요. 이 규칙은 닫는 블록 토큰과 같은 행의 이전 토큰에도 적용됩니다. eslint: [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
+  - [19.14](#whitespace--block-spacing) 여는 블록 토큰과 같은 행의 다음 토큰 내의 공백을 일관성있게 하세요. 이 규칙은 닫는 블록 토큰과 같은 행의 이전 토큰에도 적용됩니다. eslint: [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
 
     ```javascript
     // bad
@@ -2760,7 +2869,7 @@
     ```
 
   <a name="whitespace--comma-spacing"></a>
-  - [19.14](#whitespace--comma-spacing) 쉼표 이전에는 공백을 넣지 말고, 쉼표 이후에는 공백을 넣으세요. eslint: [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing)
+  - [19.15](#whitespace--comma-spacing) 쉼표 이전에는 공백을 넣지 말고, 쉼표 이후에는 공백을 넣으세요. eslint: [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing)
 
     ```javascript
     // bad
@@ -2773,7 +2882,7 @@
     ```
 
   <a name="whitespace--computed-property-spacing"></a>
-  - [19.15](#whitespace--computed-property-spacing) 계산된 속성 내에는 공백을 넣으세요. eslint: [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing)
+  - [19.16](#whitespace--computed-property-spacing) 계산된 속성 내에는 공백을 넣으세요. eslint: [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing)
 
     ```javascript
     // bad
@@ -2790,7 +2899,7 @@
     ```
 
   <a name="whitespace--func-call-spacing"></a>
-  - [19.16](#whitespace--func-call-spacing) 함수를 호출할 때는 공백을 넣지 마세요. eslint: [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
+  - [19.17](#whitespace--func-call-spacing) 함수를 호출할 때는 공백을 넣지 마세요. eslint: [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
 
     ```javascript
     // bad
@@ -2804,7 +2913,7 @@
     ```
 
     <a name="whitespace--key-spacing"></a>
-  - [19.17](#whitespace--key-spacing) 객체 리터럴 속성의 키와 값 사이에는 공백을 넣으세요. eslint: [`key-spacing`](https://eslint.org/docs/rules/key-spacing)
+  - [19.18](#whitespace--key-spacing) 객체 리터럴 속성의 키와 값 사이에는 공백을 넣으세요. eslint: [`key-spacing`](https://eslint.org/docs/rules/key-spacing)
 
     ```javascript
     // bad
@@ -2816,24 +2925,33 @@
     ```
 
     <a name="whitespace--no-trailing-spaces"></a>
-  - [19.18](#whitespace--no-trailing-spaces) 해의 마지막에 공백을 남겨두지 마세요. eslint: [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces)
+  - [19.19](#whitespace--no-trailing-spaces) 해의 마지막에 공백을 남겨두지 마세요. eslint: [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces)
 
   <a name="whitespace--no-multiple-empty-lines"></a>
-  - [19.19](#whitespace--no-multiple-empty-lines) 여러 빈 행을 쓰지 마세요. 단, 파일의 마지막 행에는 빈 행을 두세요. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
+  - [19.20](#whitespace--no-multiple-empty-lines) 여러 빈 행을 쓰지 마세요. 단, 파일의 마지막 행에는 빈 행을 두세요. 파일의 시작에는 빈 행을 두지 마세요. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
-    // bad
+    // bad - 여러 개의 빈 줄
     var x = 1;
 
 
+    var y = 2;
 
+    // bad - 파일 끝에 2개 이상의 빈 줄
+    var x = 1;
+    var y = 2;
+
+
+    // bad - 파일 시작에 1개 이상의 빈 줄 
+
+    var x = 1;
     var y = 2;
 
     // good
     var x = 1;
-
     var y = 2;
+
     ```
     <!-- markdownlint-enable MD012 -->
 
@@ -2882,7 +3000,7 @@
     > 왜? 이것은 깨끗한 git의 diffs로 이어집니다. 또한 Babel과 같은 트랜스파일러는 트랜스파일하는 사이에 쓸데없는 끝의 쉼표를 제거합니다. 이것은 레거시 브라우저에서의 [불필요한 쉼표 문제](es5-deprecated/README.md#commas)를 고민할 필요가 없는 것을 의미합니다.
 
     ```diff
-    // bad - git diff without trailing comma
+    // bad - 마지막에 쉼표가 없는 경우 git diff
     const hero = {
          firstName: 'Florence',
     -    lastName: 'Nightingale'
@@ -2890,7 +3008,7 @@
     +    inventorOf: ['coxcomb chart', 'modern nursing']
     };
 
-    // good - git diff with trailing comma
+    // good - 마지막에 쉼표가 있는 경우 git diff
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
@@ -2939,7 +3057,7 @@
       // does nothing
     }
 
-    // good (note that a comma must not appear after a "rest" element)
+    // good ("나머지" 요소 뒤에 쉼표가 없다는 점에 주의하세요)
     function createHero(
       firstName,
       lastName,
@@ -2963,7 +3081,7 @@
       inventorOf,
     );
 
-    // good (note that a comma must not appear after a "rest" element)
+    // good ("나머지" 요소 뒤에 쉼표가 없다는 점에 주의하세요)
     createHero(
       firstName,
       lastName,
@@ -2982,12 +3100,12 @@
     > 왜? 자바스크립트가 세미콜론이 없는 줄바꿈을 만났을 때, [자동 세미콜론 삽입](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) 규칙에 따라 그 줄바꿈을 구문의 끝으로 간주할지 여부를 결정하고, (이름이 암시하듯) 세미콜론을 줄바꿈 이전에 삽입합니다. ASI는 몇가지 별난 동작을 포함하고 있지만, 만약 자바스크립트가 줄바꿈을 잘못 해석한다면 코드가 망가져버릴 것입니다. 이 규칙은 새로운 기능이 자바스크립트의 일부가 되면서 더 복잡해집니다. 구문의 끝을 명시하고, 빠뜨린 세미콜론을 잡도록 linter를 설정하면 문제가 발생하는 것을 막을 수 있습니다.
 
     ```javascript
-    // bad - raises exception
+    // bad - 예외 발생
     const luke = {}
     const leia = {}
     [luke, leia].forEach(jedi => jedi.father = 'vader')
 
-    // bad - raises exception
+    // bad - 예외 발생
     const reaction = "No! That's impossible!"
     (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
@@ -3224,19 +3342,19 @@
   - [23.6](#naming--filename-matches-export) 파일 이름은 default export의 이름과 일치해야 합니다.  
 
     ```javascript
-    // file 1 contents
+    // 파일 1 내용
     class CheckBox {
       // ...
     }
     export default CheckBox;
 
-    // file 2 contents
+    // 파일 2 내용
     export default function fortyTwo() { return 42; }
 
-    // file 3 contents
+    // 파일 3 내용
     export default function insideDirectory() {}
 
-    // in some other file
+    // 다른 파일
     // bad
     import CheckBox from './checkBox'; // PascalCase import/export, camelCase filename
     import FortyTwo from './FortyTwo'; // PascalCase import/filename, camelCase export
