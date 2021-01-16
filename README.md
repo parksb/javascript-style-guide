@@ -84,7 +84,7 @@
     console.log(foo, bar); // => 1, 9
     ```
 
-    - symbol과 bigint는 완전히 폴리필되지 않으므로, 이를 지원하지 않는 브라우저/환경을 대상으로 사용해서는 안 됩니다. 
+    - Symbol과 BigInt는 완전히 폴리필되지 않으므로, 이를 지원하지 않는 브라우저/환경을 대상으로 사용해서는 안 됩니다. 
 
   <a name="types--complex"></a><a name="1.2"></a>
   - [1.2](#types--complex)  **참조형**: 참조형에 접근하면 참조를 통해 값을 조작하게 됩니다.
@@ -308,7 +308,7 @@
     ```
 
   <a name="objects--rest-spread"></a>
-  - [3.8](#objects--rest-spread) 객체에 대해 얕은 복사를 할 때는 [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)대신 객체 전개 연산자를 사용하세요. 특정 속성이 생략된 새로운 개체를 가져올 때는 객체 나머지 연산자(object rest operator)를 사용하세요.
+  - [3.8](#objects--rest-spread) 객체에 대해 얕은 복사를 할 때는 [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)대신 객체 전개 연산자를 사용하세요. 특정 속성이 생략된 새로운 개체를 가져올 때는 객체 나머지 연산자(object rest operator)를 사용하세요. eslint: [`prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread)
 
     ```javascript
     // very bad
@@ -501,7 +501,7 @@
   <a name="destructuring--object"></a><a name="5.1"></a>
   - [5.1](#destructuring--object) 하나의 객체에서 여러 속성에 접근할 때는 객체 비구조화를 사용하세요. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
 
-    > 왜? 비구조화는 속성들을 위한 임시 참조를 만들지 않도록 해줍니다.
+    > 왜? 비구조화는 속성들을 위한 임시 참조를 만들지 않도록 해주고, 객체의 반복적인 접근을 방지합니다. 반복적인 객체 접근은 중복 코드와 실수를 만들어내고, 더 많은 코드를 읽게 합니다. 또한 객체 비구조화는 블록에서 사용되는 객체의 구조를 정의하는 단일한 위치를 제공함으로써 어떤 것이 사용되는지 알아내기 위해 모든 블록을 읽지 않아도 되도록 해줍니다.
 
     ```javascript
     // bad
@@ -786,7 +786,7 @@
     ```
 
   <a name="functions--defaults-last"></a><a name="7.9"></a>
-  - [7.9](#functions--defaults-last) 기본 매개변수는 항상 뒤쪽에 두세요.
+  - [7.9](#functions--defaults-last) 기본 매개변수는 항상 뒤쪽에 두세요. eslint: [`default-param-last`](https://eslint.org/docs/rules/default-param-last)
 
     ```javascript
     // bad
@@ -1418,7 +1418,7 @@
     ```
 
   <a name="modules--multiline-imports-over-newlines"></a>
-  - [10.8](#modules--multiline-imports-over-newlines) 여러 줄에 걸친 import는 여러 줄의 배열이나 객체 리터럴처럼 들여쓰기하세요.
+  - [10.8](#modules--multiline-imports-over-newlines) 여러 줄에 걸친 import는 여러 줄의 배열이나 객체 리터럴처럼 들여쓰기하세요. eslint: [`object-curly-newline`](https://eslint.org/docs/rules/object-curly-newline)
 
     > 왜? 스타일 가이드에 있는 다른 모든 중괄호 블록들 처럼 중괄호는 같은 들여쓰기 규칙을 따릅니다. 콤마가 그렇듯이 말이죠.
 
@@ -1457,6 +1457,23 @@
  eslint: [`import/extensions`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md)
 
     > 왜? 확장자를 명시하면 모든 소비자에서 import하는 모듈의 세부적 구현을 부적절하게 하드코딩하고, 리팩토링을 막게 됩니다.
+
+    ```javascript
+    // bad
+    import foo from './foo.js';
+    import bar from './bar.jsx';
+    import baz from './baz/index.jsx';
+
+    // good
+    import foo from './foo';
+    import bar from './bar';
+    import baz from './baz';
+    ```
+
+  <a name="modules--import-extensions"></a>
+  - [10.10](#modules--import-extensions) 자바스크립트 파일 이름 확장자를 쓰지 마세요. eslint: [`import/extensions`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md)
+
+    > 왜? 확장자는 리팩토링을 어렵게 만들며, 모듈을 사용하는 모든 곳에서 모듈의 세부 정보를 부적절하게 하드코딩합니다.
 
     ```javascript
     // bad
@@ -1870,7 +1887,7 @@
 ## 호이스팅 (Hoisting)
 
   <a name="hoisting--about"></a><a name="14.1"></a>
-  - [14.1](#hoisting--about) `var` 선언은 할당없이 가장 가까운 함수 스코프의 꼭대기에 호이스트됩니다. `const`와 `let` 선언은 [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_Dead_Zone)라고 불리는 새로운 개념의 혜택을 받습니다. [왜 typeof는 더 이상 안전하지 않은가](http://es-discourse.com/t/why-typeof-is-no-longer-safe/15)에 대해서 알고있는 것이 중요합니다.
+  - [14.1](#hoisting--about) `var` 선언은 할당없이 가장 가까운 함수 스코프의 꼭대기에 호이스트됩니다. `const`와 `let` 선언은 [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_Dead_Zone)라고 불리는 새로운 개념의 혜택을 받습니다. [왜 typeof는 더 이상 안전하지 않은가](https://web.archive.org/web/20200121061528/http://es-discourse.com/t/why-typeof-is-no-longer-safe/15)에 대해서 알고있는 것이 중요합니다.
 
     ```javascript
     // (전역 변수 notDefined가 존재하지 않는다고 판정한 경우)
@@ -2917,11 +2934,11 @@
 
     ```javascript
     // bad
-    var obj = { "foo" : 42 };
-    var obj2 = { "foo":42 };
+    var obj = { foo : 42 };
+    var obj2 = { foo:42 };
 
     // good
-    var obj = { "foo": 42 };
+    var obj = { foo: 42 };
     ```
 
     <a name="whitespace--no-trailing-spaces"></a>
@@ -3168,6 +3185,8 @@
 
   <a name="coercion--numbers"></a><a name="21.3"></a>
   - [22.3](#coercion--numbers) 숫자: 형변환을 하는 경우 `Number`를 사용하고, 문자열을 파싱하는 경우에는 기수를 인자로 넘겨 `parseInt`를 사용하세요. eslint: [`radix`](https://eslint.org/docs/rules/radix) [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
+
+    > 왜? `parseInt` 함수는 특정 기수(radix)에 따른 문자열 인자의 내용을 해석하고, 이에 따라 판단되는 정수 값을 만듭니다. 이때 문자열 맨앞의 공백은 무시됩니다. 만약 기수가 `undefined` 또는 `0`이라면 `10`으로 취급되며, 숫자가 `0x` 또는 `0X` 문자로 시작하는 경우엔 16진수로 취급됩니다. ECMAScript 3와의 차이는 8진수 해석을 허용하는가에 있습니다. 많은 구현체들이 2013부터 이러한 동작을 채택하지 않았는데, 오래된 브라우저들을 지원해야 하므로 기수를 항상 명시해야 합니다.
 
     ```javascript
     const inputValue = '4';
@@ -3841,18 +3860,14 @@
   아래 목록은 이 스타일 가이드를 사용하고 있는 단체들입니다. 우리에게 풀 리퀘스트를 보내면 리스트에 추가해드리겠습니다.
 
   - **123erfasst**: [123erfasst/javascript](https://github.com/123erfasst/javascript)
-  - **3blades**: [3Blades](https://github.com/3blades)
   - **4Catalyzer**: [4Catalyzer/javascript](https://github.com/4Catalyzer/javascript)
   - **Aan Zee**: [AanZee/javascript](https://github.com/AanZee/javascript)
-  - **Adult Swim**: [adult-swim/javascript](https://github.com/adult-swim/javascript)
   - **Airbnb**: [airbnb/javascript](https://github.com/airbnb/javascript)
   - **AltSchool**: [AltSchool/javascript](https://github.com/AltSchool/javascript)
   - **Apartmint**: [apartmint/javascript](https://github.com/apartmint/javascript)
   - **Ascribe**: [ascribe/javascript](https://github.com/ascribe/javascript)
-  - **Avalara**: [avalara/javascript](https://github.com/avalara/javascript)
   - **Avant**: [avantcredit/javascript](https://github.com/avantcredit/javascript)
   - **Axept**: [axept/javascript](https://github.com/axept/javascript)
-  - **BashPros**: [BashPros/javascript](https://github.com/BashPros/javascript)
   - **Billabong**: [billabong/javascript](https://github.com/billabong/javascript)
   - **Bisk**: [bisk](https://github.com/Bisk/)
   - **Bonhomme**: [bonhommeparis/javascript](https://github.com/bonhommeparis/javascript)
@@ -3865,13 +3880,12 @@
   - **DailyMotion**: [dailymotion/javascript](https://github.com/dailymotion/javascript)
   - **DoSomething**: [DoSomething/eslint-config](https://github.com/DoSomething/eslint-config)
   - **Digitpaint** [digitpaint/javascript](https://github.com/digitpaint/javascript)
-  - **Drupal**: [www.drupal.org](https://www.drupal.org/project/drupal)
+  - **Drupal**: [www.drupal.org](https://git.drupalcode.org/project/drupal/blob/8.6.x/core/.eslintrc.json)
   - **Ecosia**: [ecosia/javascript](https://github.com/ecosia/javascript)
   - **Evernote**: [evernote/javascript-style-guide](https://github.com/evernote/javascript-style-guide)
   - **Evolution Gaming**: [evolution-gaming/javascript](https://github.com/evolution-gaming/javascript)
   - **EvozonJs**: [evozonjs/javascript](https://github.com/evozonjs/javascript)
   - **ExactTarget**: [ExactTarget/javascript](https://github.com/ExactTarget/javascript)
-  - **Expensify** [Expensify/Style-Guide](https://github.com/Expensify/Style-Guide/blob/master/javascript.md)
   - **Flexberry**: [Flexberry/javascript-style-guide](https://github.com/Flexberry/javascript-style-guide)
   - **Gawker Media**: [gawkermedia](https://github.com/gawkermedia/)
   - **General Electric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
@@ -3881,12 +3895,10 @@
   - **Grupo-Abraxas**: [Grupo-Abraxas/javascript](https://github.com/Grupo-Abraxas/javascript)
   - **Honey**: [honeyscience/javascript](https://github.com/honeyscience/javascript)
   - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript-style-guide)
-  - **Huballin**: [huballin](https://github.com/huballin/)
   - **HubSpot**: [HubSpot/javascript](https://github.com/HubSpot/javascript)
   - **Hyper**: [hyperoslo/javascript-playbook](https://github.com/hyperoslo/javascript-playbook/blob/master/style.md)
   - **InterCity Group**: [intercitygroup/javascript-style-guide](https://github.com/intercitygroup/javascript-style-guide)
   - **Jam3**: [Jam3/Javascript-Code-Conventions](https://github.com/Jam3/Javascript-Code-Conventions)
-  - **JeopardyBot**: [kesne/jeopardy-bot](https://github.com/kesne/jeopardy-bot/blob/master/STYLEGUIDE.md)
   - **JSSolutions**: [JSSolutions/javascript](https://github.com/JSSolutions/javascript)
   - **Kaplan Komputing**: [kaplankomputing/javascript](https://github.com/kaplankomputing/javascript)
   - **KickorStick**: [kickorstick](https://github.com/kickorstick/)
@@ -3897,11 +3909,8 @@
   - **Mighty Spring**: [mightyspring/javascript](https://github.com/mightyspring/javascript)
   - **MinnPost**: [MinnPost/javascript](https://github.com/MinnPost/javascript)
   - **MitocGroup**: [MitocGroup/javascript](https://github.com/MitocGroup/javascript)
-  - **ModCloth**: [modcloth/javascript](https://github.com/modcloth/javascript)
-  - **Money Advice Service**: [moneyadviceservice/javascript](https://github.com/moneyadviceservice/javascript)
   - **Muber**: [muber](https://github.com/muber/)
   - **National Geographic**: [natgeo](https://github.com/natgeo/)
-  - **Nimbl3**: [nimbl3/javascript](https://github.com/nimbl3/javascript)
   - **Nulogy**: [nulogy/javascript](https://github.com/nulogy/javascript)
   - **Orange Hill Development**: [orangehill/javascript](https://github.com/orangehill/javascript)
   - **Orion Health**: [orionhealth/javascript](https://github.com/orionhealth/javascript)
@@ -3909,13 +3918,10 @@
   - **Peerby**: [Peerby/javascript](https://github.com/Peerby/javascript)
   - **Pier 1**: [Pier1/javascript](https://github.com/pier1/javascript)
   - **Qotto**: [Qotto/javascript-style-guide](https://github.com/Qotto/javascript-style-guide)
-  - **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
-  - **reddit**: [reddit/styleguide/javascript](https://github.com/reddit/styleguide/tree/master/javascript)
   - **React**: [facebook.github.io/react/contributing/how-to-contribute.html#style-guide](https://facebook.github.io/react/contributing/how-to-contribute.html#style-guide)
   - **REI**: [reidev/js-style-guide](https://github.com/rei/code-style-guides/)
   - **Ripple**: [ripple/javascript-style-guide](https://github.com/ripple/javascript-style-guide)
   - **Sainsbury's Supermarkets**: [jsainsburyplc](https://github.com/jsainsburyplc)
-  - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
   - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
   - **Sourcetoad**: [sourcetoad/javascript](https://github.com/sourcetoad/javascript)
   - **Springload**: [springload](https://github.com/springload/)
