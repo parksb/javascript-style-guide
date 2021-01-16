@@ -411,7 +411,7 @@
     ```
 
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.7](#arrays--callback-return) 배열 메소드 콜백에는 리턴 구문을 사용하세요. 만약 함수가 [8.2](#arrows--implicit-return)와 같이 부작용 없는 단일 표현식을 반환하는 구문으로 구성되어 있다면 리턴 구문을 생략해도 됩니다. eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
+  - [4.7](#arrays--callback-return) 배열 메소드 콜백에는 리턴 구문을 사용하세요. 만약 함수가 [8.2](#arrows--implicit-return)와 같이 사이드 이펙트가 없는 단일 표현식을 반환하는 구문으로 구성되어 있다면 리턴 구문을 생략해도 됩니다. eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
   
     ```javascript
     // good
@@ -769,7 +769,7 @@
     ```
 
   <a name="functions--default-side-effects"></a><a name="7.8"></a>
-  - [7.8](#functions--default-side-effects) 부작용이 있을만한 기본 매개변수는 사용하지 마세요.
+  - [7.8](#functions--default-side-effects) 사이드 이펙트가 있을만한 기본 매개변수는 사용하지 마세요.
 
     > 왜? 혼란을 야기하기 때문입니다.
 
@@ -832,7 +832,7 @@
   <a name="functions--mutate-params"></a><a name="7.12"></a>
   - [7.12](#functions--mutate-params) 절대로 매개변수를 바꾸지 마세요. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign.html)
 
-    > 왜? 매개변수로 전달된 객체를 조작하면 원래 호출처에서 원치 않는 부작용을 일으킬 수 있습니다.
+    > 왜? 매개변수로 전달된 객체를 조작하면 원래 호출처에서 원치 않는 사이드 이펙트를 일으킬 수 있습니다.
 
     ```javascript
     // bad
@@ -955,7 +955,7 @@
     ```
 
   <a name="arrows--implicit-return"></a><a name="8.2"></a>
-  - [8.2](#arrows--implicit-return) 하나의 식으로 구성된 함수가 부작용이 없는 [표현식](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions)을 반환하는 경우, 중괄호를 생략하고 암시적 반환을 사용할 수 있습니다. 그 외에는 중괄호를 그대로 두고, `return`문도 사용하세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style.html)
+  - [8.2](#arrows--implicit-return) 하나의 식으로 구성된 함수가 사이드 이펙트 없는 [표현식](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions)을 반환하는 경우, 중괄호를 생략하고 암시적 반환을 사용할 수 있습니다. 그 외에는 중괄호를 그대로 두고, `return`문도 사용하세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style.html)
 
     > 왜? 문법적 설탕이니까요. 여러 함수가 연결된 경우 읽기 쉬워집니다.
 
@@ -980,7 +980,7 @@
       [index]: number,
     }));
 
-    // 암시적 반환없이 부작용을 수반합니다
+    // 암시적 반환없이 사이드 이펙트를 수반합니다
     function foo(callback) {
       const val = callback();
       if (val === true) {
@@ -1190,7 +1190,7 @@
     ```
 
   <a name="constructors--tostring"></a><a name="9.4"></a>
-  - [9.4](#constructors--tostring) `toString()`을 사용해도 되지만, 올바르게 동작하는지와 부작용이 없는지 확인해 주세요.
+  - [9.4](#constructors--tostring) `toString()`을 사용해도 되지만, 올바르게 동작하는지와 사이드 이펙트가 없는지 확인해 주세요.
 
     ```javascript
     class Jedi {
@@ -1477,7 +1477,7 @@
   <a name="iterators--nope"></a><a name="11.1"></a>
   - [11.1](#iterators--nope) 이터레이터를 사용하지 마세요. `for-in`이나 `for-of`같은 루프 대신 자바스크립트의 고급함수를 사용하세요. eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
 
-    > 왜? 고급함수는 불변 규칙을 적용합니다. 부작용에 대해 추측하는 것보다 값을 반환하는 순수 함수를 다루는 것이 더 간단합니다.
+    > 왜? 고급함수는 불변 규칙을 적용합니다. 사이드 이펙트에 대해 추측하는 것보다 값을 반환하는 순수 함수를 다루는 것이 더 간단합니다.
 
     > 배열을 이터레이트할 때 `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... 를 사용하세요. 배열을 생성할 때는 `Object.keys()` / `Object.values()` / `Object.entries()`를 사용해서 모든 객체를 이터레이트 할 수 있습니다. 
 
@@ -3481,7 +3481,7 @@
   - [24.1](#accessors--not-required) 속성을 위한 접근자 함수는 필수가 아닙니다.
 
   <a name="accessors--no-getters-setters"></a><a name="23.2"></a>
-  - [24.2](#accessors--no-getters-setters) 자바스크립트 getters/setters를 사용하지 마세요. 예기치못한 부작용를 일으키고 테스트와 유지보수를 어렵게 만듭니다. 접근자 함수를 만들고 싶다면 대신, `getVal()`과 `setVal('hello')`를 사용하세요.
+  - [24.2](#accessors--no-getters-setters) 자바스크립트 getters/setters를 사용하지 마세요. 예기치못한 사이드 이펙트를 일으키고 테스트와 유지보수를 어렵게 만듭니다. 접근자 함수를 만들고 싶다면 대신, `getVal()`과 `setVal('hello')`를 사용하세요.
 
     ```javascript
     // bad
