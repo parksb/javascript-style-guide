@@ -308,7 +308,7 @@
     ```
 
   <a name="objects--rest-spread"></a>
-  - [3.8](#objects--rest-spread) 객체에 대해 얕은 복사를 할 때는 [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)대신 객체 전개 연산자를 사용하세요. 특정 속성이 생략된 새로운 개체를 가져올 때는 객체 나머지 연산자(object rest operator)를 사용하세요. eslint: [`prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread)
+  - [3.8](#objects--rest-spread) 객체에 대해 얕은 복사를 할 때는 [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)대신 객체 전개 구문을 사용하세요. 특정 속성이 생략된 새로운 개체를 가져올 때는 객체 나머지 연산자(object rest operator)를 사용하세요. eslint: [`prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread)
 
     ```javascript
     // very bad
@@ -356,7 +356,7 @@
     ```
 
   <a name="es6-array-spreads"></a><a name="4.3"></a>
-  - [4.3](#es6-array-spreads) 배열을 복사할 때는 배열 전개 연산자 `...` 를 사용하세요.
+  - [4.3](#es6-array-spreads) 배열을 복사할 때는 배열 전개 구문 `...` 을 사용하세요.
 
     ```javascript
     // bad
@@ -374,7 +374,7 @@
 
   <a name="arrays--from"></a>
   <a name="arrays--from-iterable"></a><a name="4.4"></a>
-  - [4.4](#arrays--from-iterable) 순회 가능한 객체(iterable object)를 배열로 변환할 때는 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 대신 전개 연산자 `...`를 사용하세요. 
+  - [4.4](#arrays--from-iterable) 순회 가능한 객체(iterable object)를 배열로 변환할 때는 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 대신 전개 구문 `...`을 사용하세요. 
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
@@ -400,7 +400,7 @@
     ```
 
   <a name="arrays--mapping"></a>
-  - [4.6](#arrays--mapping) 매핑할 때는 전개 연산자 `...` 대신 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from)을 사용하세요. 중간 배열 생성을 방지하기 때문입니다.
+  - [4.6](#arrays--mapping) 매핑할 때는 전개 구문 `...` 대신 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from)을 사용하세요. 중간 배열 생성을 방지하기 때문입니다.
   
     ```javascript
     // bad
@@ -875,7 +875,7 @@
     ```
 
   <a name="functions--spread-vs-apply"></a><a name="7.14"></a>
-  - [7.14](#functions--spread-vs-apply) 가변 인자 함수를 호출할 때는 전개 연산자 `...`을 사용하세요. eslint: [`prefer-spread`](https://eslint.org/docs/rules/prefer-spread)
+  - [7.14](#functions--spread-vs-apply) 가변 인자 함수를 호출할 때는 전개 구문 `...`을 사용하세요. eslint: [`prefer-spread`](https://eslint.org/docs/rules/prefer-spread)
 
     > 왜? 이게 더 깔끔합니다. 컨텍스트를 제공할 필요도 없고, `apply`로 `new`를 쉽게 구성할 수도 없습니다.
 
