@@ -1468,24 +1468,6 @@
     import foo from './foo';
     import bar from './bar';
     import baz from './baz';
-    ```
-
-  <a name="modules--import-extensions"></a>
-  - [10.10](#modules--import-extensions) 자바스크립트 파일 이름 확장자를 쓰지 마세요. eslint: [`import/extensions`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md)
-
-    > 왜? 확장자는 리팩토링을 어렵게 만들며, 모듈을 사용하는 모든 곳에서 모듈의 세부 정보를 부적절하게 하드코딩합니다.
-
-    ```javascript
-    // bad
-    import foo from './foo.js';
-    import bar from './bar.jsx';
-    import baz from './baz/index.jsx';
-
-    // good
-    import foo from './foo';
-    import bar from './bar';
-    import baz from './baz';
-    ```
 
 **[⬆ back to top](#목차)**
 
