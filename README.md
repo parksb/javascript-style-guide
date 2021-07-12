@@ -1298,7 +1298,7 @@
 ## 모듈 (Modules)
 
   <a name="modules--use-them"></a><a name="10.1"></a>
-  - [10.1](#modules--use-them) 비표준 모듈 시스템에는 항상 모듈(`import`/`export`)을 사용하세요. 이를 통해 선호하는 모듈 시스템으로 트랜스파일할 수 있습ㄴ니다.
+  - [10.1](#modules--use-them) 비표준 모듈 시스템에는 항상 모듈(`import`/`export`)을 사용하세요. 이를 통해 선호하는 모듈 시스템으로 트랜스파일할 수 있습니다.
 
     > 왜? 모듈은 미래입니다. 지금 그 미래를 사용해 시작합니다.
 
@@ -1468,24 +1468,6 @@
     import foo from './foo';
     import bar from './bar';
     import baz from './baz';
-    ```
-
-  <a name="modules--import-extensions"></a>
-  - [10.10](#modules--import-extensions) 자바스크립트 파일 이름 확장자를 쓰지 마세요. eslint: [`import/extensions`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md)
-
-    > 왜? 확장자는 리팩토링을 어렵게 만들며, 모듈을 사용하는 모든 곳에서 모듈의 세부 정보를 부적절하게 하드코딩합니다.
-
-    ```javascript
-    // bad
-    import foo from './foo.js';
-    import bar from './bar.jsx';
-    import baz from './baz/index.jsx';
-
-    // good
-    import foo from './foo';
-    import bar from './bar';
-    import baz from './baz';
-    ```
 
 **[⬆ back to top](#목차)**
 
@@ -1873,7 +1855,7 @@
 
     var x = 1;
     var y = a + 2;
-ㅣ
+
     alert(getXPlusY(x, y));
 
     // 'type'은 사용되지 않을 경우 무시됩니다. 나머지 속성의 형제이기 때문입니다.
@@ -3739,8 +3721,6 @@
 
 ## 테스트 (Testing)
 
-  <a name="testing--yup"></a><a name="28.1"></a>
-  - [30.1](#testing--yup) **Yup.**
   <a name="testing--yup"></a><a name="28.1"></a>
   - [30.1](#testing--yup) **합시다.**
 
