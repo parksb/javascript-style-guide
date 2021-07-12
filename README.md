@@ -3722,8 +3722,6 @@
 ## 테스트 (Testing)
 
   <a name="testing--yup"></a><a name="28.1"></a>
-  - [30.1](#testing--yup) **Yup.**
-  <a name="testing--yup"></a><a name="28.1"></a>
   - [30.1](#testing--yup) **합시다.**
 
     ```javascript
