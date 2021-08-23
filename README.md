@@ -550,7 +550,7 @@
       return [left, right, top, bottom];
     }
 
-    // 반환되는 데이터의 순서를 생각해야합다
+    // 반환되는 데이터의 순서를 생각해야합니다
     const [left, __, top] = processInput(input);
 
     // good
