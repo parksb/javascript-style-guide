@@ -1131,7 +1131,7 @@
   <a name="constructors--extends"></a><a name="9.2"></a>
   - [9.2](#constructors--extends) 상속에는 `extends`를 사용하세요.
 
-    > 왜? `instanceof`를 파괴하지 않고 프토로타입 상속을 하기 위해 내장된 방법이기 때문입니다.
+    > 왜? `instanceof`를 파괴하지 않고 프로토타입 상속을 하기 위해 내장된 방법이기 때문입니다.
 
     ```javascript
     // bad
