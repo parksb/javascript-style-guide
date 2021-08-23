@@ -1022,7 +1022,7 @@
     ```
 
   <a name="arrows--one-arg-parens"></a><a name="8.4"></a>
-  - [8.4](#arrows--one-arg-parens) 명확성과 읽관성을 위해 항상 인자를 괄호로 감싸세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html)
+  - [8.4](#arrows--one-arg-parens) 명확성과 일관성을 위해 항상 인자를 괄호로 감싸세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html)
 
     > 왜? 인자를 추가하거나 제거할 때 변경 사항을 최소화할 수 있습니다.
 
