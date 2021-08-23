@@ -550,7 +550,7 @@
       return [left, right, top, bottom];
     }
 
-    // 반환되는 데이터의 순서를 생각해야합다
+    // 반환되는 데이터의 순서를 생각해야합니다
     const [left, __, top] = processInput(input);
 
     // good
@@ -1022,7 +1022,7 @@
     ```
 
   <a name="arrows--one-arg-parens"></a><a name="8.4"></a>
-  - [8.4](#arrows--one-arg-parens) 명확성과 읽관성을 위해 항상 인자를 괄호로 감싸세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html)
+  - [8.4](#arrows--one-arg-parens) 명확성과 일관성을 위해 항상 인자를 괄호로 감싸세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html)
 
     > 왜? 인자를 추가하거나 제거할 때 변경 사항을 최소화할 수 있습니다.
 
@@ -1131,7 +1131,7 @@
   <a name="constructors--extends"></a><a name="9.2"></a>
   - [9.2](#constructors--extends) 상속에는 `extends`를 사용하세요.
 
-    > 왜? `instanceof`를 파괴하지 않고 프토로타입 상속을 하기 위해 내장된 방법이기 때문입니다.
+    > 왜? `instanceof`를 파괴하지 않고 프로토타입 상속을 하기 위해 내장된 방법이기 때문입니다.
 
     ```javascript
     // bad
