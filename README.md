@@ -934,11 +934,11 @@
 ## 화살표 함수 (Arrow Functions)
 
   <a name="arrows--use-them"></a><a name="8.1"></a>
-  - [8.1](#arrows--use-them) (인라인 콜백을 전달하는 듯한) 익명함수를 사용할 때는 화살표 함수 표현을 사용하세요. eslint: [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing.html)
+  - [8.1](#arrows--use-them) (인라인 콜백을 전달할 때 같이) 익명함수를 사용할 때는 화살표 함수 표현을 사용하세요. eslint: [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing.html)
 
-    > 왜? 화살표 함수는 그 컨텍스트의 `this`에서 실행하는 버전의 함수를 만듭니다. 이것은 보통 원하는대로 작동하고, 보다 간결합니다.
+    > 왜? 화살표 함수는 그 컨텍스트의 `this`에서 실행하는 버전의 함수를 만들기 때문입니다. 이것은 보통 원하는대로 작동하고, 보다 간결합니다.
 
-    > 사용해야만 하지 않아? 복잡한 함수에서 로직을 정의한 함수의 바깥으로 이동하고 싶을 때.
+    > 이렇게 하는 건 어때요? 만약 당신이 상당히 복잡한 함수를 가지고 있다면, 당신은 그 로직을 명명된 함수 표현식으로 옮길 수 있습니다.
 
     ```javascript
     // bad
