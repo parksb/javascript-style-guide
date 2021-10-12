@@ -957,7 +957,7 @@
   <a name="arrows--implicit-return"></a><a name="8.2"></a>
   - [8.2](#arrows--implicit-return) 하나의 식으로 구성된 함수가 사이드 이펙트 없는 [표현식](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions)을 반환하는 경우, 중괄호를 생략하고 암시적 반환을 사용할 수 있습니다. 그 외에는 중괄호를 그대로 두고, `return`문도 사용하세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style.html)
 
-    > 왜? 문법적 설탕이니까요. 여러 함수가 연결된 경우 읽기 쉬워집니다.
+    > 왜? Syntactic sugar(이해하기 쉽게 디자인된 프로그래밍 언어 내의 문법)니까요. 여러 함수가 연결된 경우 읽기 쉬워집니다.
 
     ```javascript
     // bad
