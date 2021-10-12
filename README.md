@@ -2025,7 +2025,7 @@
   <a name="comparison--switch-blocks"></a><a name="15.5"></a>
   - [15.5](#comparison--switch-blocks) 렉시컬 선언 (e.g. `let`, `const`, `function`, and `class`)을 포함하는 `case`와 `default` 구문 안에 블록을 만들 때는 괄호를 사용하세요. eslint: [`no-case-declarations`](https://eslint.org/docs/rules/no-case-declarations.html)
 
-    > 왜? 렉시컬 선언은 `switch` 블록 전체에서 접근할 수 있지만, 할당된 경우에만 초기화됩니다. `case`에 다달았을 때 말이죠. 이것은 여러 `case` 구문이 같은 것을 정의하려 할 때 문제를 일으킵니다. 
+    > 왜? 렉시컬 선언은 `switch` 블록 전체에서 접근할 수 있지만, 할당된 경우에만 초기화됩니다. `case`에 다다랐을 때 말이죠. 이것은 여러 `case` 구문이 같은 것을 정의하려 할 때 문제를 일으킵니다. 
 
     ```javascript
     // bad
