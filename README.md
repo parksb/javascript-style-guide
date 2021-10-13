@@ -934,11 +934,11 @@
 ## 화살표 함수 (Arrow Functions)
 
   <a name="arrows--use-them"></a><a name="8.1"></a>
-  - [8.1](#arrows--use-them) (인라인 콜백을 전달하는 듯한) 익명함수를 사용할 때는 화살표 함수 표현을 사용하세요. eslint: [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing.html)
+  - [8.1](#arrows--use-them) (인라인 콜백을 전달할 때 같이) 익명함수를 사용할 때는 화살표 함수 표현을 사용하세요. eslint: [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing.html)
 
-    > 왜? 화살표 함수는 그 컨텍스트의 `this`에서 실행하는 버전의 함수를 만듭니다. 이것은 보통 원하는대로 작동하고, 보다 간결합니다.
+    > 왜? 화살표 함수는 그 컨텍스트의 `this`에서 실행하는 버전의 함수를 만들기 때문입니다. 이것은 보통 원하는대로 작동하고, 보다 간결합니다.
 
-    > 사용해야만 하지 않아? 복잡한 함수에서 로직을 정의한 함수의 바깥으로 이동하고 싶을 때.
+    > 이렇게 하는 건 어때요? 만약 당신이 상당히 복잡한 함수를 가지고 있다면, 당신은 그 로직을 명명된 함수 표현식으로 옮길 수 있습니다.
 
     ```javascript
     // bad
@@ -957,7 +957,7 @@
   <a name="arrows--implicit-return"></a><a name="8.2"></a>
   - [8.2](#arrows--implicit-return) 하나의 식으로 구성된 함수가 사이드 이펙트 없는 [표현식](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions)을 반환하는 경우, 중괄호를 생략하고 암시적 반환을 사용할 수 있습니다. 그 외에는 중괄호를 그대로 두고, `return`문도 사용하세요. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style.html)
 
-    > 왜? 문법적 설탕이니까요. 여러 함수가 연결된 경우 읽기 쉬워집니다.
+    > 왜? Syntactic sugar(이해하기 쉽게 디자인된 프로그래밍 언어 내의 문법)니까요. 여러 함수가 연결된 경우 읽기 쉬워집니다.
 
     ```javascript
     // bad
@@ -1300,7 +1300,7 @@
   <a name="modules--use-them"></a><a name="10.1"></a>
   - [10.1](#modules--use-them) 비표준 모듈 시스템에는 항상 모듈(`import`/`export`)을 사용하세요. 이를 통해 선호하는 모듈 시스템으로 트랜스파일할 수 있습니다.
 
-    > 왜? 모듈은 미래입니다. 지금 그 미래를 사용해 시작합니다.
+    > 왜? 모듈은 미래입니다. 지금 이 미래를 사용해 봅시다.
 
     ```javascript
     // bad
@@ -2025,7 +2025,7 @@
   <a name="comparison--switch-blocks"></a><a name="15.5"></a>
   - [15.5](#comparison--switch-blocks) 렉시컬 선언 (e.g. `let`, `const`, `function`, and `class`)을 포함하는 `case`와 `default` 구문 안에 블록을 만들 때는 괄호를 사용하세요. eslint: [`no-case-declarations`](https://eslint.org/docs/rules/no-case-declarations.html)
 
-    > 왜? 렉시컬 선언은 `switch` 블록 전체에서 접근할 수 있지만, 할당된 경우에만 초기화됩니다. `case`에 다달았을 때 말이죠. 이것은 여러 `case` 구문이 같은 것을 정의하려 할 때 문제를 일으킵니다. 
+    > 왜? 렉시컬 선언은 `switch` 블록 전체에서 접근할 수 있지만, 할당된 경우에만 초기화됩니다. `case`에 다다랐을 때 말이죠. 이것은 여러 `case` 구문이 같은 것을 정의하려 할 때 문제를 일으킵니다. 
 
     ```javascript
     // bad
